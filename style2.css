@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+/*GLOBAL*/
+:root {
+    --full-black: #000;
+    --my-black: rgba(0,0,0,.5);
+    --my-dk-green: #2D4A22;
+    --my-green: #49AA26;
+    --my-grey: #F0F2F5;
+    --my-red: #E92929;
+    --my-silver: #969CB3;
+    --my-white: #FFF;
+    --steel-blue: #363F5F;
+    --rocket-seat: #8257E6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--my-grey);
+    font-weight: normal;
+}
+
+body:first-child {
+    width: 100%;
+}
+
+#container {
+    position: absolute;
+    background: var(--my-white);
+    margin: auto;
+    padding: 65px;
+    border: solid var(--my-black) 1px;
+    border-radius: 4px;
+    box-shadow: 6px 5px 5px var(--my-black);
+    top: min(15%, 115px);
+    left: 5vw;
+    left: 18vw;
+    text-align: justify;
+}
+
+#container h2 {
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+#container div ul li {
+    border-spacing: 2rem 0;
+    margin: 7px 0 7px 0;
+}
+
+#container ul {
+    list-style: none;
+}
+
+#container #lt p {
+    padding-top: 100px;
+}
+
+#container a {
+    text-decoration: none;
+    color: var(--rocket-seat);
+}
+
+#containe #rt p {
+    color: var(--my-black);
+}
+
+#lt {
+    float: left;
+    margin-right: 30px;
+    padding: 0;
+}
+
+#rt {
+    margin-left: 30px;
+    float: right;
+    padding: 0;
+}
+
+#rt #checkbox {
+    clear: both;
+}
+
+#rt #kSignedIn {
+    margin: 6.2rem 0 0 0;
+}
+
+#rt p {
+    float: right;
+    margin: 0 0 0 .5rem;
+    padding: 0;
+}
+
+#rt #qr-code {
+    margin: 0 0 1rem .5rem;
+}
+
+#logo-pic {
+    height: 30px;
+    width: 30px;
+    float: left;
+    margin: 8px;
+}
+
+#head {
+    position: absolute;
+    height: auto;
+    width: fit-content;
+    top: 1.5rem;
+    left: 5rem;
+}
+
+#logo {
+    font-weight: 400;
+    color: var(--my-white);
+    font-size: 13pt;
+    margin: 10px;
+    text-transform: uppercase;
+    float: left;
+}
+
+#cabecalho {
+    padding: 5rem;
+    background: var(--rocket-seat);
+}
+
+#rodape {
+    text-align: center;
+    margin-top: 405px;
+}
