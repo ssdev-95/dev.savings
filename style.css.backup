@@ -37,8 +37,8 @@ body:first-child {
     text-align: center;
     font-weight: 100;
 }
-.main {
-    margin: -70px auto 2rem;
+#container {
+    margin: -70px auto 2rem auto;
     width: min(90vw,500px);
 }
 #balance h2 {
@@ -97,5 +97,5 @@ body:first-child {
 }
 #rodape {
     text-align: center;
-    margin: 2rem;
+    margin-bottom: 2rem;
 }
