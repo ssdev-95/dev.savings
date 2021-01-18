@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@media(min-width: 720px) {
+    #container {
+        margin: -70px auto 2rem auto;
+        width: 55vw;
+    }
+}
 /*GLOBAL*/
 :root {
     --full-black: #000;
@@ -39,7 +45,7 @@ body:first-child {
 }
 #container {
     margin: -70px auto 2rem auto;
-    width: min(90vw,500px);
+    width: min(90vw, 410px);
 }
 #balance h2 {
      color: var(--my-white);
@@ -49,7 +55,7 @@ body:first-child {
     padding: 2rem 3rem;
     background: var(--my-white);
     border-radius: 5px;
-    margin-bottom: 2rem;
+    margin: 2rem;
 }
 .cards h3 {
     font-weight: normal;
