@@ -1,17 +1,16 @@
 @charset "UTF-8";
 /*GLOBAL*/
 :root {
-    --full-black: #000;
-    --my-black: rgba(0,0,0,.5);
-    --my-lt-green: #02E402;
-    --my-dk-green: #2D4A22;
-    --my-green: #49AA26;
-    --my-grey: #F0F2F5;
-    --my-red: #F00;
-    --my-silver: #969CB3;
-    --my-white: #FFF;
-    --steel-blue: #363F5F;
+    --full-black: #000; /***/
+    --my-black: rgba(0,0,0,.5); /***/
+    --my-lt-green: #02E402; /***/
+    --my-dk-green: #2D4A22; /***/
+    --my-green: #49AA26; /***/
+    --my-grey: #F0F2F5; /***/
+    --my-red: #F00; /***/
+    --my-white: #FFF; /***/
     --rocket-seat: #8257E6;
+    --rocketseat-dark: #7159C1;
 }
 * {
     margin: 0;
