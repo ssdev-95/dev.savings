@@ -1,100 +1,303 @@
 @charset "UTF-8";
 /*GLOBAL*/
 :root {
-    --full-black: #000; /***/
-    --my-black: rgba(0,0,0,.5); /***/
-    --my-lt-green: #02E402; /***/
-    --my-dk-green: #2D4A22; /***/
-    --my-green: #49AA26; /***/
-    --my-grey: #F0F2F5; /***/
-    --my-red: #F00; /***/
-    --my-white: #FFF; /***/
-    --rocket-seat: #8257E6;
-    --rocketseat-dark: #7159C1;
+  --my-grey: #d2dcdf; /***/
+  --my-red: #f00; /***/
+  --my-white: #fff; /***/
+  --full-black: #000; /***/
+  --my-black: rgba(0, 0, 0, 0.5); /***/
+  --my-lt-green: #02e402; /***/
+  --my-green: #49aa26; /***/
+  --rocket-seat: #8257e6; /***/
+  --rocket-seat-dark: #7159c1; /***/
+  --a-hover: #3dd705; /***/
+  --my-purple: rgba(113, 89, 193, 0.5); /***/
 }
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html {
+  font-size: 93.75%;
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
-    font-weight: normal;
-    background: var(--my-grey);
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  background: var(--my-grey);
 }
 body:first-child {
+  width: 100%;
+}
+
+a {
+  color: var(--my-green);
+  text-decoration: none;
+}
+
+button {
     width: 100%;
-}
-#cabecalho {
-    background: var(--my-dk-green);
-    padding: 3rem;
-}
-#logo {
+    height: 58px;
+
+    border: none;
+    border-radius: .25rem;
     color: var(--my-white);
+    background-color: var(--my-green);
+
     padding: 0;
-    margin: 1rem auto 4rem;
-    text-align: center;
-    font-weight: 100;
+    cursor: pointer;
 }
-.main {
-    margin: -70px auto 2rem;
-    width: min(90vw,500px);
+
+button:hover {
+    background-color: var(--a-hover)
 }
-#balance h2 {
-     color: var(--my-white);
-     font-weight: 400;
+
+.button.cancel {
+    color: var(--my-red);
+    border: 2px var(--my-red) solid;
+    border-radius: .25rem;
+
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .5;
 }
-.cards {
-    padding: 2rem 3rem;
-    background: var(--my-white);
-    border-radius: 5px;
-    margin-bottom: 2rem;
-}
-.cards h3 {
-    font-weight: normal;
-    text-align: left;
-    font-size: 12pt;
-}
-.cards p {
-    font-size: 18pt
-}
-.cards.total {
-    background: var(--my-green);
-    color: var(--my-white);
-}
-#transaction h2 {
-    font-weight: 400;
-}
-#data-table {
-    width: 100%;
-    border-radius: 2px 3px;
-}
-#data-table thead, #data-table tbody {
-    padding: .25rem 1rem;
-    text-align: left;
-}
-#data-table tbody tr, #data-table tbody td {
-    background: var(--my-grey);
-    opacity: .8;
-    margin: 5px 0;
-    padding: auto 0;
-}
-#data-table tbody tr:hover, #data-table tbody td:hover {
+
+.button.cancel:hover {
     opacity: 1;
 }
+
+a:hover {
+  color: var(--a-hover);
+}
+
+.button.new {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+#cabecalho {
+  background: var(--rocket-seat-dark);
+  padding: 3rem;
+}
+
+#logo {
+  color: var(--my-white);
+  text-align: center;
+  font-weight: 100;
+  padding: 0;
+  margin: 1rem 45% 4rem;
+}
+
+.main {
+  margin: -70px auto 2rem;
+  width: min(90vw, 500px);
+}
+#balance h2 {
+  overflow-x: hidden;
+  display: block;
+  color: var(--my-white);
+  font-weight: 400;
+}
+.cards {
+  padding: 2rem 3rem;
+  background: var(--my-white);
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  color: var(--my-black);
+}
+.cards h3 {
+  font-weight: normal;
+  text-align: left;
+  font-size: 12pt;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cards p {
+  font-size: 18pt;
+}
+.cards.total {
+  background: var(--my-green);
+  color: var(--my-white);
+}
+
+#transaction {
+  display: block;
+  overflow-x: auto;
+}
+
+#transaction h2 {
+  font-weight: 400;
+}
+#data-table {
+  width: 100%;
+  border-spacing: 0 0.5rem;
+  color: var(--my-black);
+}
+#data-table thead,
+#data-table tbody {
+  background-color: var(--my-purple);
+  padding: 0.25rem 1rem;
+  text-align: left;
+}
+#data-table tbody tr,
+#data-table tbody td {
+  margin: 5px 0;
+  padding: auto 0;
+  opacity: 0.8;
+}
+#data-table thead tr th:first-child,
+#data-table tbody tr td:first-child {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+#data-table thead tr th:last-child,
+#data-table tbody tr td:last-child {
+  border-radius: 0 0.25rem.25rem 0;
+}
+
+#data-table tbody tr:hover,
+#data-table tbody td:hover {
+  opacity: 1;
+}
 .description {
-    color: var(--full-black);
+  color: var(--full-black);
 }
 .expense {
-    color: var(--my-red);
+  color: var(--my-red);
 }
 .income {
-    color: var(--my-lt-green);
+  color: var(--my-lt-green);
 }
 .date {
-    color: var(--my-black);
+  color: var(--my-black);
 }
+
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--my-black);
+
+  position: fixed;
+  top: 0;
+
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  border-radius: 10px;
+  background: #f0f2f5;
+  padding: 2.4rem;
+  position: relative;
+}
+
+#form {
+  max-width: 500px;
+}
+
+#form h2 {
+  margin-top: 0;
+}
+
+input {
+  border: none;
+  border-radius: 0.25rem;
+
+  padding: 0.8rem;
+
+  width: 100%;
+}
+
+.input-group {
+  margin-top: 0.8rem;
+}
+
+.input-group small {
+  opacity: 0.4;
+}
+
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button ,
+.input-group.actions button {
+    width: 48%;
+}
+
 #rodape {
-    text-align: center;
-    margin: 2rem;
+  text-align: center;
+  margin: 2rem;
+}
+
+/*Mbile M*/
+@media (max-width: 26.5625rem) {
+  #logo {
+    margin-left: 5%;
+  }
+}
+
+/*Mobile L*/
+@media (max-width: 47.99375rem) {
+  #logo {
+    margin-left: 24%;
+  }
+}
+
+/*Tablet*/
+@media (min-width: 48rem) {
+  #logo {
+    margin-left: 38%;
+  }
+}
+
+@media (min-width: 800px) {
+  html {
+    font-size: 87.5%;
+  }
+
+  #logo {
+    margin-left: 43%;
+  }
+
+  #balance {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-left: -3.5rem;
+  }
+
+  #transaction {
+    width: 100%;
+  }
 }
