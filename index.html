@@ -17,16 +17,18 @@
 
   <body>
     <div>
-      <header id="cabecalho">
+      <header class="cabecalho">
         <!--
           ##Original Page Logo
           <h1 id="logo">dev.finance$</h1>
         -->
-        <img  id="logo" src="./images/logo.svg" alt="Logo Dev.Finance$">
+        <img  class="logo" src="./images/logo.svg" alt="Logo Dev.Finance$">
+
+        <img class="toogle" src="./images/sun.svg" alt="Theme toogl" onclick="Modal.changeTheme()">
       </header>
 
       <main class="main">
-        <section id="balance">
+        <section class="balance">
           <h2 class="sr-only">Balance</h2>
 
           <div class="cards">
@@ -52,7 +54,7 @@
           </div>
         </section>
 
-        <section id="transaction">
+        <section class="transaction">
             
           <h2 class="sr-only">Transaction$</h2>
 
@@ -60,7 +62,7 @@
              href="#" 
              onclick="Modal.open()">&plus;&nbsp;New&nbsp;Transaction</a>
 
-          <table id="data-table">
+          <table class="data-table">
 
             <thead>
               <tr>
@@ -96,7 +98,7 @@
                 <td class="income">R$ 5.000,00</td>
                 <td class="date">31/12/2020</td>
                 <td>
-                  <img class="button delete" src="./images/minus.svg" alt="Image minus">
+                  <img class="button delete" src="./images/minus.svg" alt="Image minus" onclick="Modal.delete()">
                 </td>
               </tr>
 
@@ -110,7 +112,7 @@
 
       <div class="modal-overlay">
         <div class="modal">
-          <div id="form"></div>
+          <div class="form"></div>
             <h2>New Transaction</h2>
             <form action="#">
 
@@ -164,7 +166,7 @@
         </div>
       </div>
 
-      <footer id="rodape">
+      <footer class="rodape">
         <p>dev.finance$&nbsp;-&nbsp;by xSallus&trade;</p>
       </footer>
 
