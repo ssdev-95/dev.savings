@@ -84,7 +84,6 @@ h2 {
 /*Balance*/
 .balance {
   display: block;
-
 }
 
 .balance h2 {
@@ -179,7 +178,87 @@ h2 {
 
 /*Modal*/
 .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: var(--my-black);
+
   display: none;
+}
+
+.modal {
+  background: var(--my-white);
+
+  height: 250px;
+  width: 250px;
+
+  max-height: max(30%, 250px);
+  max-width: max(30%, 250px);
+
+  border-radius: 10px;
+
+  position: relative;
+  margin: min(40%, 150px) auto;
+  padding: 0;
+
+  display: block;
+}
+
+.form {
+  padding-top: 7px;
+  margin: 10px;
+}
+
+.input-group {
+  margin: 10px 15%;
+}
+
+.input-group small {
+  padding: 0;
+  margin: 0;
+  opacity: .5;
+  font-size: 8pt;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions button {
+  padding: 5x;
+  width: 75px;
+  text-align: center;
+  background: var(--income);
+  border: none;
+  border-radius: 8px;
+  color: var(--full-white);
+}
+
+.actions .button.cancel {
+  padding: 5px;
+  width: 75px;
+  text-align: center;
+  background: var(--my-red);
+  opacity: .83;
+  border-radius: 8px;
+  color: var(--full-white);
+}
+
+.actions button:hover {
+  background: var(--lt-green);
+}
+
+.actions .button.cancel:hover {
+  opacity: 1;
+}
+
+.modal-overlay.active {
+  display: initial;
 }
 
 @media (min-width: 721px) {
