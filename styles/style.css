@@ -3,24 +3,19 @@
 /*GLOBAL*/
 :root {
   /*Normal Theme*/
-  --my-green: #02e402;
-  --lt-green: #3dd705;
-  --dark-green: #49aa26;
+  --my-green: #02e402; /***/ 
+  --lt-green: #3dd705; /***/
+  --dark-green: #49aa26; /***/
   --header: #2d4a22;
-  --income: #12a454;
-  --my-red: #e92929;
-  --full-red: #F00;
+  --income: #12a454; /***/
+  --my-red: #e92929; /***/
+  --full-red: #F00; /***/
   --my-grey: #d2dcdf;
-  --my-white:#f0f2f5;
-  --full-white: #fff;
-  --full-black: #000;
-  --my-black: rgba(0,0,0,.5);
-  --dark-blue: #363f5f;
-
-  /*Rocketseat Theme*/
-  --rocket-seat: #8257e6;
-  --rocket-seat-dark: #7159c1;
-  --my-purple: rgba(113, 89, 193, 0.5);
+  --my-white:#f0f2f5; /***/
+  --full-white: #fff; /***/
+  --full-black: #000;/***/
+  --my-black: rgba(0,0,0,.5); /***/
+  --dark-blue: #363f5f; /***/
 }
 
 * {
@@ -59,13 +54,8 @@ a{
   width:50px;
 
   position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-option {
-  width: 25px;
-  height: 25px;
+  top: 2.5vh;
+  right: 1.5vw;
 }
 
 /*Main*/
@@ -157,6 +147,8 @@ h2 {
   opacity: 1;
 }
 
+.title,
+.date,
 .description {
   color: var(--dark-blue);
 }
@@ -196,8 +188,8 @@ h2 {
   height: 250px;
   width: 250px;
 
-  max-height: max(30%, 250px);
-  max-width: max(30%, 250px);
+  max-height: max(30%, 300px);
+  max-width: max(30%, 300px);
 
   border-radius: 10px;
 
@@ -214,14 +206,16 @@ h2 {
 }
 
 .input-group {
-  margin: 10px 15%;
+  margin: .5rem auto  auto;
+  width: 80%;
+  justify-items: center;
 }
 
-.input-group small {
-  padding: 0;
+.input-group .help {
+  opacity: .4;
+  line-height: 1rem;
   margin: 0;
-  opacity: .5;
-  font-size: 8pt;
+  padding: 0;
 }
 
 .actions {
@@ -233,7 +227,8 @@ h2 {
   padding: 5x;
   width: 75px;
   text-align: center;
-  background: var(--income);
+  background: var(--my-green);
+  opacity: 0.7;
   border: none;
   border-radius: 8px;
   color: var(--full-white);
@@ -244,15 +239,12 @@ h2 {
   width: 75px;
   text-align: center;
   background: var(--my-red);
-  opacity: .83;
+  opacity: 0.7;
   border-radius: 8px;
   color: var(--full-white);
 }
 
-.actions button:hover {
-  background: var(--lt-green);
-}
-
+.actions button:hover,
 .actions .button.cancel:hover {
   opacity: 1;
 }

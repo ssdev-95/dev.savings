@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="pt-br">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +25,7 @@
         -->
         <img  class="logo" src="./images/logo.svg" alt="Logo Dev.Finance$">
 
-        <img class="toogle" src="./images/sun.svg" alt="Theme toogl" onclick="Modal.changeTheme()">
+        <img class="toogle" src="./images/sun.svg" alt="Theme toogle">
       </header>
 
       <main class="main">
@@ -66,9 +67,9 @@
 
             <thead>
               <tr>
-                <th>Description</th>
-                <th>Valor</th>
-                <th>Date</th>
+                <th class="title">Description</th>
+                <th class="title">Valor</th>
+                <th class="title">Date</th>
                 <th></th>
               </tr>
             </thead>
@@ -159,7 +160,7 @@
                 <a href="#"
                    class="button cancel"
                    onclick="Modal.close()">Cancel</a>
-                <button>Save</button>
+                <button onclick="Modal.save()">Save</button>
               </div>
 
             </form>
@@ -172,7 +173,8 @@
 
     </div>
 
-    <script src="./scripts/openModal.js"></script>
+    <script src="./scripts/modal.js"></script>
+    <!--<script src="./scripts/themes.js"></script>-->
 
   </body>
 
