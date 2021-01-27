@@ -29,7 +29,7 @@ let body = document.body
 let cards = document.querySelectorAll('.cards')
 let cardTotal = document.querySelector('.cards.total')
 let toogle = document.querySelector('.circle')
-let foot = document.querySelector('.rodape')
+let foot = document.querySelector('.rodape-link')
 let tableDate = document.querySelectorAll('.date')
 let tableDescription = document.querySelectorAll('.description')
 
