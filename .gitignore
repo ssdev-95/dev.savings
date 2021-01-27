@@ -17,6 +17,6 @@
 .prettierignore
 
 #lol
-*.whats-dev-web
 *.backups
+*.zip
 

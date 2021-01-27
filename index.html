@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html lang="pt-br">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <title>dev.finance$</title>
   </head>
 
@@ -23,9 +22,13 @@
           ##Original Page Logo
           <h1 id="logo">dev.finance$</h1>
         -->
-        <img  class="logo" src="./images/logo.svg" alt="Logo Dev.Finance$">
+        <img class="logo" src="./images/logo.svg" alt="Logo Dev.Finance$" />
 
-        <img class="toogle" src="./images/sun.svg" alt="Theme toogle">
+        <div class="toogle" onclick="selectStyle()">
+          <svg class="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <circle cx="40" y="40" r="15"/>
+          </svg>
+        </div>
       </header>
 
       <main class="main">
@@ -35,36 +38,34 @@
           <div class="cards">
             <h3>
               <span>Income$</span>
-              <img src="./images/income.svg" alt="Image income">
+              <img src="./images/income.svg" alt="Image income" />
             </h3>
             <p>R$ 5.000,00</p>
           </div>
           <div class="cards">
             <h3>
               <span>Withdraw$</span>
-              <img src="./images/expense.svg" alt="Image withdraw">
+              <img src="./images/expense.svg" alt="Image withdraw" />
             </h3>
             <p>R$ 3.000,00</p>
           </div>
           <div class="cards total">
             <h3>
               <span>Total</span>
-              <img src="./images/total.svg" alt="Image total">
+              <img src="./images/total.svg" alt="Image total" />
             </h3>
             <p>R$ 2.000,00</p>
           </div>
         </section>
 
         <section class="transaction">
-            
           <h2 class="sr-only">Transaction$</h2>
 
-          <a class="button  new"
-             href="#" 
-             onclick="Modal.open()">&plus;&nbsp;New&nbsp;Transaction</a>
+          <a class="button new" href="#" onclick="Modal.open()"
+            >&plus;&nbsp;New&nbsp;Transaction</a
+          >
 
           <table class="data-table">
-
             <thead>
               <tr>
                 <th class="title">Description</th>
@@ -75,13 +76,16 @@
             </thead>
 
             <tbody>
-
               <tr>
                 <td class="description">Eletricity</td>
                 <td class="expense">R$ 500,00</td>
                 <td class="date">04/01/2021</td>
                 <td>
-                  <img class="button delete" src="./images/minus.svg" alt="Image minus">
+                  <img
+                    class="button delete"
+                    src="./images/minus.svg"
+                    alt="Image minus"
+                  />
                 </td>
               </tr>
 
@@ -90,7 +94,11 @@
                 <td class="expense">R$ 142,49</td>
                 <td class="date">09/01/2021</td>
                 <td>
-                  <img class="button delete" src="./images/minus.svg" alt="Image minus">
+                  <img
+                    class="button delete"
+                    src="./images/minus.svg"
+                    alt="Image minus"
+                  />
                 </td>
               </tr>
 
@@ -99,83 +107,70 @@
                 <td class="income">R$ 5.000,00</td>
                 <td class="date">31/12/2020</td>
                 <td>
-                  <img class="button delete" src="./images/minus.svg" alt="Image minus" onclick="Modal.delete()">
+                  <img
+                    class="button delete"
+                    src="./images/minus.svg"
+                    alt="Image minus"
+                    onclick="Modal.delete()"
+                  />
                 </td>
               </tr>
-
             </tbody>
-
           </table>
-
         </section>
-
       </main>
 
       <div class="modal-overlay">
         <div class="modal">
           <div class="form"></div>
-            <h2 class="sr-only">New Transaction</h2>
-            <form action="#">
+          <h2 class="sr-only">New Transaction</h2>
+          <form action="#">
+            <div class="input-group">
+              <label class="sr-only" for="description"> Description </label>
+              <input
+                type="text"
+                name="description"
+                id="description"
+                placeholder="Ex: Income..."
+              />
+            </div>
 
-              <div class="input-group">
-                <label 
-                    class="sr-only" for="description">
-                  Description
-                </label>
-                <input 
-                  type="text" 
-                  name="description" 
-                  id="description" 
-                  placeholder="Ex: Income..."
-                />
-              </div>
+            <div class="input-group">
+              <label class="sr-only" for="amount"> Value </label>
+              <input
+                type="number"
+                step="0.01"
+                name="amount"
+                id="amount"
+                placeholder="Ex: -1,00.. 50,00.."
+              />
+              <small class="help"
+                >Use o sinal - (negativo) para despesas e , (v&iacute;rgula)
+                para casas decimais</small
+              >
+            </div>
 
-              <div class="input-group">
-                <label class="sr-only" for="amount">
-                  Value
-                </label>
-                <input 
-                  type="number" 
-                  step="0.01"
-                  name="amount" 
-                  id="amount" 
-                  placeholder="Ex: -1,00.. 50,00.."
-                />
-                <small class="help">Use o sinal - (negativo) para despesas e , (v&iacute;rgula) para casas decimais</small>
-              </div>
+            <div class="input-group">
+              <label class="sr-only" for="date"> Date </label>
+              <input type="date" name="date" id="date" />
+            </div>
 
-              <div class="input-group">
-                <label 
-                    class="sr-only" for="date">
-                  Date
-                </label>
-                <input 
-                  type="date" 
-                  name="date" 
-                  id="date" 
-                />
-              </div>
-
-              <div class="input-group actions">
-                <a href="#"
-                   class="button cancel"
-                   onclick="Modal.close()">Cancel</a>
-                <button onclick="Modal.save()">Save</button>
-              </div>
-
-            </form>
+            <div class="input-group actions">
+              <a href="#" class="button cancel" onclick="Modal.close()"
+                >Cancel</a
+              >
+              <button onclick="Modal.save()">Save</button>
+            </div>
+          </form>
         </div>
       </div>
 
       <footer class="rodape">
         <p>dev.finance$&nbsp;-&nbsp;by xSallus&trade;</p>
       </footer>
-
     </div>
 
     <script src="./scripts/modal.js"></script>
-    <!--<script src="./scripts/themes.js"></script>-->
-
+    <script src="./scripts/themes.js"></script>
   </body>
-
 </html>

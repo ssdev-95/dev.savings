@@ -50,12 +50,18 @@ a{
 
 .toogle {
   padding: 1px;
-  height: 30px;
-  width:50px;
+  margin: 0;
+  height: 10px;
+  width: 10px;
 
   position: absolute;
-  top: 2.5vh;
-  right: 1.5vw;
+  top: 2%;
+  left: 0;
+}
+
+.circle {
+  stroke: var(--full-white);
+  fill: var(--full-black);
 }
 
 /*Main*/
