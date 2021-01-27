@@ -68,21 +68,26 @@ function selectStyle() {
 
 function changeColor(pallette) {
     head.style.background = pallette[1]
+    
     body.style.background = pallette[2]
+
     cardTotal.style.background = pallette[4]
 
-    for(i=0; i<2; i++) {
+    for(i=0; i<(cards.length-1); i++) {
         cards.item(i).style.background = pallette[3]
         cards.item(i).style.color = pallette[0]
     }
 
-    for (x=0; x<tableDate.length; x++) {
-        tableDate[x].style.color = pallette[6]
-        tableDescription[x].style.color = pallette[6]
+    for(let date of tableDate)  {
+        date.style.color = pallette[6]
     }
 
-    for(z=0; z<tableTitle.length; z++) {
-        tableTitle[z].style.color = pallette[6]
+    for(let description of tableDescription)  {
+        description.style.color = pallette[6]
+    }
+    
+    for(let title of tableTitle)  {
+        title.style.color = pallette[6]
     }
 
     foot.style.color = pallette[6]
