@@ -23,12 +23,13 @@ const themeRocketseat = [/*.some texts*/'#fff',
                          /*footer*/'#fff']
 
 let style = 'light'
+let svg = 'sun'
 
 let head = document.querySelector('.cabecalho')
 let body = document.body
 let cards = document.querySelectorAll('.cards')
 let cardTotal = document.querySelector('.cards.total')
-let toogle = document.querySelector('.circle')
+let toogle = document.querySelector(/*'.circle'*/'.toogle')
 let foot = document.querySelector('.rodape-link')
 let tableDate = document.querySelectorAll('.date')
 let tableDescription = document.querySelectorAll('.description')
@@ -38,14 +39,17 @@ function selectStyle() {
         case 'light':
             changeColor(themeDark);
             style = 'dark'
+            svg = 'moon'
             break;
         case 'dark':
             changeColor(themeRocketseat)
             style = 'rocket'
+            svg = 'rocket'
             break;
         case 'rocket':
             changeColor(themeDefault)
             style = 'light'
+            svg = 'sun'
             break;
     }
 }
@@ -54,7 +58,7 @@ function changeColor(pallette) {
     head.style.background = pallette[1]
     body.style.background = pallette[2]
     cardTotal.style.background = pallette[4]
-    toogle.style.fill = pallette[5]
+    toogle.style.backgroundImage = '../images/${svg}.svg'
 
     for(i=0; i<2; i++) {
         cards.item(i).style.background = pallette[3]

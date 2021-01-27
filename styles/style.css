@@ -51,12 +51,15 @@ a{
 .toogle {
   padding: 1px;
   margin: 0;
-  height: 10px;
-  width: 10px;
 
+  height: 50px;
+  width: 50px;
+  
   position: absolute;
-  top: 2%;
-  left: 0;
+  top: 1%;
+  left: 1%;
+
+  fill: var(--full-white);
 }
 
 .circle {
