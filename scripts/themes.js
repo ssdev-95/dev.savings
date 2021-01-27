@@ -23,42 +23,53 @@ const themeRocketseat = [/*.some texts*/'#fff',
                          /*footer*/'#fff']
 
 let style = 'light'
-let svg = 'sun'
 
 let head = document.querySelector('.cabecalho')
 let body = document.body
 let cards = document.querySelectorAll('.cards')
 let cardTotal = document.querySelector('.cards.total')
-let toogle = document.querySelector(/*'.circle'*/'.toogle')
 let foot = document.querySelector('.rodape-link')
+let tableTitle = document.querySelectorAll('.title')
 let tableDate = document.querySelectorAll('.date')
 let tableDescription = document.querySelectorAll('.description')
 
+let sun = document.querySelector('.sun')
+let moon = document.querySelector('.moon')
+let rocket = document.querySelector('.rocket')
+
 function selectStyle() {
+    let theme
     switch (style) {
         case 'light':
-            changeColor(themeDark);
+            theme = themeDark;
             style = 'dark'
-            svg = 'moon'
+            sun.style.opacity = 0
+            moon.style.opacity = 1
+            rocket.style.opacity = 0
             break;
         case 'dark':
-            changeColor(themeRocketseat)
+            theme = themeRocketseat
             style = 'rocket'
-            svg = 'rocket'
+            sun.style.opacity = 0
+            moon.style.opacity = 0
+            rocket.style.opacity = 1
             break;
         case 'rocket':
-            changeColor(themeDefault)
+            theme = themeDefault
             style = 'light'
-            svg = 'sun'
+            sun.style.opacity = 1
+            moon.style.opacity = 0
+            rocket.style.opacity = 0
             break;
     }
+
+    changeColor(theme)
 }
 
 function changeColor(pallette) {
     head.style.background = pallette[1]
     body.style.background = pallette[2]
     cardTotal.style.background = pallette[4]
-    toogle.style.backgroundImage = '../images/${svg}.svg'
 
     for(i=0; i<2; i++) {
         cards.item(i).style.background = pallette[3]
@@ -70,8 +81,9 @@ function changeColor(pallette) {
         tableDescription[x].style.color = pallette[6]
     }
 
-    //tableExpense.style.color = pallette[6]
-    //tableIncome.style.color = pallette[6]
+    for(z=0; z<tableTitle.length; z++) {
+        tableTitle[z].style.color = pallette[6]
+    }
 
     foot.style.color = pallette[6]
 }

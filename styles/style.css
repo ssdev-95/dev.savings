@@ -52,19 +52,26 @@ a{
   padding: 1px;
   margin: 0;
 
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   
   position: absolute;
-  top: 1%;
-  left: 1%;
+  top: 1.5%;
+  left: 1.5%;
 
   fill: var(--full-white);
 }
 
-.circle {
-  stroke: var(--full-white);
-  fill: var(--full-black);
+.sun {
+  opacity: 1;
+}
+
+.moon {
+  opacity: 0;
+}
+
+.rocket {
+  opacity: 0;
 }
 
 /*Main*/
