@@ -38,21 +38,21 @@
               <span>Income$</span>
               <img src="./images/income.svg" alt="Image income" />
             </h3>
-            <p>R$ 5.000,00</p>
+            <p class="incomes-show">R$ 0,00</p>
           </div>
           <div class="cards">
             <h3>
               <span>Withdraw$</span>
               <img src="./images/expense.svg" alt="Image withdraw" />
             </h3>
-            <p>R$ 3.000,00</p>
+            <p class="expenses-show">R$ 0,00</p>
           </div>
           <div class="cards total">
             <h3>
               <span>Total</span>
               <img src="./images/total.svg" alt="Image total" />
             </h3>
-            <p>R$ 2.000,00</p>
+            <p class="total-show">R$ 0,00</p>
           </div>
         </section>
 
@@ -73,47 +73,7 @@
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td class="description">Eletricity</td>
-                <td class="expense">R$ 500,00</td>
-                <td class="date">04/01/2021</td>
-                <td>
-                  <img
-                    class="button delete"
-                    src="./images/minus.svg"
-                    alt="Image minus"
-                  />
-                </td>
-              </tr>
-
-              <tr>
-                <td class="description">Telephone</td>
-                <td class="expense">R$ 142,49</td>
-                <td class="date">09/01/2021</td>
-                <td>
-                  <img
-                    class="button delete"
-                    src="./images/minus.svg"
-                    alt="Image minus"
-                  />
-                </td>
-              </tr>
-
-              <tr>
-                <td class="description">Deposit</td>
-                <td class="income">R$ 5.000,00</td>
-                <td class="date">31/12/2020</td>
-                <td>
-                  <img
-                    class="button delete"
-                    src="./images/minus.svg"
-                    alt="Image minus"
-                    onclick="Modal.delete()"
-                  />
-                </td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
         </section>
       </main>
@@ -122,7 +82,7 @@
         <div class="modal">
           <div class="form"></div>
           <h2 class="sr-only">New Transaction</h2>
-          <form action="#">
+          <form action="/" onsubmit="Form.submit(event)">
             <div class="input-group">
               <label class="sr-only" for="description"> Description </label>
               <input
@@ -154,10 +114,10 @@
             </div>
 
             <div class="input-group actions">
-              <a href="#" class="button cancel" onclick="Modal.close()"
+              <a href="/" class="button cancel" onclick="Modal.close()"
                 >Cancel</a
               >
-              <button onclick="Modal.save()">Save</button>
+              <button>Save</button>
             </div>
           </form>
         </div>
@@ -178,5 +138,6 @@
 
     <script src="./scripts/modal.js"></script>
     <script src="./scripts/themes.js"></script>
+    <!--<script src="./scripts/transaction.js"></script>-->
   </body>
 </html>

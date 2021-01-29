@@ -18,5 +18,10 @@
 
 #lol
 *.backups
+*.bckp
 *.zip
+
+#remove for now
+#add later
+/scripts/transaction.js
 
