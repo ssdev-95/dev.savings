@@ -31,18 +31,22 @@ const Transaction = {
       let value = 0
       for(transaction of Transaction.all) {
           if (transaction.amount > 0) {
-              value += transaction.amount
+            transaction.amount = Number(transaction.amount)
+            value += Math.round(transaction.amount)
           }
       }
+      console.log(value)
       return value
   },
   expenses() {
       let value = 0
       for(transaction of Transaction.all) {
           if (transaction.amount < 0) {
-              value += transaction.amount
+            transaction.amount = Number(transaction.amount)
+            value += Math.round(transaction.amount)
           }
       }
+      console.log(value)
       return value
   },
   totals() {
@@ -92,11 +96,12 @@ const Utils = {
           currency: "BRL"
       })
 
-      return signal + value
+      const nimbus = `${signal} ${value}`
+      return nimbus
   },
   formatAmount(value) {
-      let numb = Number(value) * 100
-      return numb
+      let numb = Math.round(Number(value) * 100)
+      return Number(numb)
   },
   formatDate(value) {
       const splittedDate = value.split("-")
@@ -117,6 +122,7 @@ const Form = {
   },
   validateFields() {
       const { description, amount, date } = Form.getValues()
+
       if (description.trim() == "" || amount.trim() == "" || date.trim() == "") {
           throw new Error("kisamaaaa!")
       }
@@ -126,6 +132,8 @@ const Form = {
 
       amount = Utils.formatAmount(amount)
       date = Utils.formatDate(date)
+
+      console.log(`${description}, ${amount}, ${date}`)
 
       return {
           description,
@@ -180,12 +188,3 @@ const App = {
 
 
 App.init()
-
-/*Transaction.add({
-  id: 4,
-  description: 'skins lol',
-  amount: -10000,
-  date: "10/05/2018"
-})
-
-Transaction.remove(0)*/
