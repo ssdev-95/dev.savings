@@ -7,6 +7,16 @@
 
 ---
 
+>>## Summary of Contents
+
+>>> - [Project Status](#project-status)
+>>> - [Features](#features)
+>>> - [Embed Tecnologies](#embed-tecnologies)
+>>> - [How to run on Your Machine](#how-to-run-on-your-machine)
+>>> - [Author](#author)
+
+---
+
 >>## 🕵️ Project Status
 
 >>>Working currently finished.
