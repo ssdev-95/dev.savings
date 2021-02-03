@@ -106,6 +106,7 @@ const Utils = {
   formatDate(value) {
       const splittedDate = value.split("-")
       date = `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
+      return date
   }
 }
 
