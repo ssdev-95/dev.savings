@@ -17,7 +17,7 @@
 
 >>> - [x] Add transactions, such as book buying, a freelance completed, etc.
 >>> - [x] Remove transactions.
->>> - [] Edit a transaction.
+>>> - [ ] Edit a transaction.
 >>> - [x] Select between three themes, <i>Normal, Dark and Rocket</i>
 
 ---
