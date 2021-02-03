@@ -31,11 +31,11 @@
 ---
 >> ## ⚙️ How to run in your machine
 
->>> -First, clone ths repo using git bash:
+>>> - First, clone ths repo using git bash:
 >> ```bash
->>   git clone https://github.com/xSallus/dev.finances.git
+>> git clone https://github.com/xSallus/dev.finances.git
 >>```
->> >Then you must deploy wherever you may like, such as GitHub Pages or Heroku.
+>>> - Then you must deploy wherever service you like, such as GitHub Pages&reg;, Vercel&reg; or Heroku&reg;.
 
 ---
 
