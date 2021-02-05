@@ -19,7 +19,8 @@
 
 >>## 🕵️ Project Status
 
->>>Working currently finished.
+>>> Working currently finished.
+>>> Working tree clean.
 
 ---
 
