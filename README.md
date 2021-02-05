@@ -35,9 +35,9 @@
 
 >> ## 🛠 Embed Tecnologies
 
->>> - HTML <img src="https://cdn.iconscout.com/icon/free/png-512/html5-19-722707.png" height="12px"/>
->>> - CSS <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" height="12px"/>
->>> - Javascript <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnezP43GZwqlUjVNQ1LyyXnY7MzjhJn3NqKQ&usqp=CAU" height="12px"/>
+>>> - [HTML 5 <img src="https://cdn.iconscout.com/icon/free/png-512/html5-19-722707.png" height="12px"/>](https://developer.mozilla.org/pt-BR/docs/Web/HTML/HTML5)
+>>> - [CSS <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" height="12px"/>](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+>>> - [Javascript <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnezP43GZwqlUjVNQ1LyyXnY7MzjhJn3NqKQ&usqp=CAU" height="12px"/>](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 
 ---
 >> ## ⚙️ How to run in your machine
