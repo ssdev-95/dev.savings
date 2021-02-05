@@ -3,7 +3,7 @@
 </h1>
 
 >># 💰 Dev.Finance$
->>>An web aplication designed to help administrate your finances
+>>> An web aplication designed to help administrate your finances
 
 ---
 
@@ -19,8 +19,8 @@
 
 >>## 🕵️ Project Status
 
->>> Working currently finished.
->>> Working tree clean.
+>>> - Working currently finished.
+>>> - Working tree clean.
 
 ---
 
