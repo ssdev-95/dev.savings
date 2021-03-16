@@ -1,28 +1,64 @@
+
 .container {
-  max-height: 100vh;
-  width: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: relative;
+  max-height: 40vh;
+}
+
+.addButton {
+  position: absolute;
+  top: 24rem;
+  right: 34rem;
+
+  height: 45px;
+  width: 45px;
+
+  border: 3px solid var(--dark-green);
+  border-radius: 50%;
+
+  text-align: center;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--dark-green);
+
+  opacity: .48;
+}
+
+.addButton:hover {
+  opacity: 1;
 }
 
 .navBar {
-  width: inherit;
+  padding-top: 1.5rem;
+  top: 0;
+  left: 0;
   height: 25vh;
+  width: 100%;
   background: var(--header);
-  padding-top: 3rem;
 }
 
 .navBar img {
-  margin: 0 auto;
-  padding-left: 30%;
+  padding-left: 45%;
 }
 
 .content {
-  margin-top: -5rem;
-  align-self: center;
-  width: 80vw;
-  height: 72vh;
   z-index: 9;
-  background: red;
+  height: 500px;
+  width: 25rem;
+  max-width: 80%;
+  margin: -3.75rem auto 0;
+}
+
+@media(max-width: 800px) {
+  .content {
+    margin-top: -5rem;
+  }
+
+  .navBar img {
+    padding-left: 30%;
+  }
+
+  .addButton {
+    top: 7rem;
+    right: 1.5rem;
+  }
 }
