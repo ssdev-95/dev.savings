@@ -1,0 +1,8 @@
+.card {
+    width: 100%;
+    height: 5rem;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.totals {background: lightgreen;}

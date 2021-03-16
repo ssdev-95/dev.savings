@@ -1,16 +1,33 @@
-html,
-body {
+:root {
+  /*Normal Theme*/
+  --my-green: #02e402;
+  --lt-green: #3dd705;
+  --dark-green: #49aa26;
+  --header: #2d4a22;
+  --income: #12a454;
+  --my-red: #e92929;
+  --full-red: #F00;
+  --my-grey: #d2dcdf;
+  --my-white:#f0f2f5;
+  --full-white: #fff;
+  --full-black: #000;
+  --my-black: rgba(0,0,0,.5);
+  --dark-blue: #363f5f;
+}
+
+* {
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+html,
+body {
+  font-family: 'Red Hat Text', monospace;
+  background: var(--my-grey);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
 }
