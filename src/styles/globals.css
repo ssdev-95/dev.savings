@@ -21,6 +21,14 @@
   margin: 0;
 }
 
+::-webkit-scroll-bar {
+  background: rgba(0,0,0,0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0);
+}
+
 html,
 body {
   font-family: 'Red Hat Text', monospace;
@@ -38,7 +46,7 @@ a {
 }
 
 .totals {
-    background: var(--my-green);
+  background: var(--my-green);
 }
 
 .expenses,

@@ -27,6 +27,15 @@
     opacity: 1;
 }
 
+
+.dataTableContainer > ::-webkit-scroll-bar {
+    background: rgba(0,0,0,0);
+  }
+  
+.dataTableContainer > ::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0);
+}
+
 @media (max-width: 800px) {
     .dataTableContainer {
         height: 67%;

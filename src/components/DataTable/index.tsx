@@ -1,130 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Transactions } from '../../contexts/TransactionsContext'
 
 import styles from '../../styles/components/DataTable.module.css'
 
 export const DataTable = () => {
-    const transactions = [
-        {
-            description: 'Luz',
-            amount: '-R$ 200,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Gas',
-            amount: '-R$ 90,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Landing page',
-            amount: 'R$ 9000,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Telefone',
-            amount: '-R$ 50,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Luz',
-            amount: '-R$ 200,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Gas',
-            amount: '-R$ 90,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Landing page',
-            amount: 'R$ 9000,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Telefone',
-            amount: '-R$ 50,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Luz',
-            amount: '-R$ 200,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Gas',
-            amount: '-R$ 90,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Landing page',
-            amount: 'R$ 9000,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Telefone',
-            amount: '-R$ 50,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Luz',
-            amount: '-R$ 200,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Gas',
-            amount: '-R$ 90,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Landing page',
-            amount: 'R$ 9000,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Telefone',
-            amount: '-R$ 50,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Luz',
-            amount: '-R$ 200,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Gas',
-            amount: '-R$ 90,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Landing page',
-            amount: 'R$ 9000,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Telefone',
-            amount: '-R$ 50,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Luz',
-            amount: '-R$ 200,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Gas',
-            amount: '-R$ 90,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Landing page',
-            amount: 'R$ 9000,00',
-            date: '25/01/2021'
-        },
-        {
-            description: 'Telefone',
-            amount: '-R$ 50,00',
-            date: '25/01/2021'
-        }
-    ]
+    const {transactions, removeTransaction} = useContext(Transactions)
 
     return (
         <div className={styles.dataTableContainer}>
@@ -139,12 +19,12 @@ export const DataTable = () => {
                 </thead>
                 <tbody>
                     {transactions.map(transaction=>{
-                        const {description, amount, date} = transaction
-                        return (<tr>
+                        const {description, amount, date, id} = transaction
+                        return (<tr key={id}>
                             <td>{description}</td>
                             <td>{amount}</td>
                             <td>{date}</td>
-                            <td>
+                            <td onClick={()=>{removeTransaction(id)}}>
                                 <img src="icons/minus.svg" />
                             </td>
                         </tr>)

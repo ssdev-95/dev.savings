@@ -4,4 +4,18 @@
     border-radius: 8px;
 
     margin-bottom: 1rem;
+
+    padding: .68rem 2rem 0;
+}
+
+.card h3 {
+    margin: .5rem;
+    margin-left: -.75rem;
+    font-weight: 400;
+}
+
+.card p {
+    margin: .5rem;
+    font-weight: 500;
+    font-size: 1.57rem;
 }
