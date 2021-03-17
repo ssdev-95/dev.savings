@@ -1,0 +1,93 @@
+
+.modalOverlay {
+    background: var(--my-black);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 100vw;
+
+    z-index: 666;
+}
+
+.modal {
+    background: var(--full-white);
+
+    margin: 20vh auto 0;
+
+    height: 45vh;
+    width: 35vw;
+
+    padding: 1.75rem;
+
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 1rem;
+}
+
+.modal input {
+    background: var(--my-white);
+    border: 0;
+    border-radius: 6px;
+    height: 35px;
+    width: 70%;
+}
+
+.actions {
+    margin-top: 2rem;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+}
+
+.cancelButton,
+.submitButton {
+    padding: .75rem 1.75rem;
+    border-radius: 6px;
+}
+
+.cancelButton {
+    border: 1.5px solid var(--full-red);
+    color: var(--full-red);
+}
+
+.cancelButton:hover {
+    background: var(--full-red);
+    color: var(--full-white);
+}
+
+.submitButton {
+    border: 1.5px solid var(--dark-green);
+    color: var(--dark-green);
+}
+
+.submitButton:hover {
+    background: var(--dark-green);
+    color: var(--full-white);
+}
+
+@media(max-width: 800px){
+    .modal {
+        height: 25rem;
+        width: 18rem;
+        gap: 2rem;
+        margin: 25vh auto 0;
+    }
+
+    .modal input:first-child {
+        margin-top: 1.5rem;
+    }
+
+    .modal input {
+        width: 100%;
+    }
+
+    .actions {
+        margin-top: 3rem;
+    }
+}

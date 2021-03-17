@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import {Card} from '../components/Card'
 import {DataTable} from '../components/DataTable'
+import {AddProductModal} from '../components/AddProductModal'
 
 import { Transactions } from '../contexts/TransactionsContext'
 
@@ -15,6 +16,7 @@ export default function Home() {
   }
   return (
     <div className={styles.container}>
+      <AddProductModal />
       <a className={styles.addButton} onClick={openAddProductModal} href="#">+</a>
       <nav className={styles.navBar}>
         <img src="icons/logo.svg" alt=""/>
