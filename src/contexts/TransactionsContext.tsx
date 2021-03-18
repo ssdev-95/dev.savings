@@ -16,8 +16,7 @@ interface TransactionsData{
     expenses: number,
     total: number,
     transactions: TransactionData[],
-    generateHash: (param1:string, param2:number, param3:string)=>string,
-    formatAmount: (params: number) => void,
+    formatAmount: (params: number) => string,
     addTransaction: (params: TransactionData)=>void,
     removeTransaction: (params: string) => void
 }
@@ -26,8 +25,13 @@ export const Transactions = createContext({} as TransactionsData)
 
 export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
 
-    const addTransaction = transaction => {
-        setTransactions([...transactions, transaction])
+    const addTransaction = (transaction) => {
+        setTransactions([...transactions, {
+            id: generateHash(transaction.description,transaction.amount,transaction.date),
+            description: transaction.description,
+            amount: transaction.amount,
+            date: transaction.date
+        }])
     }
     
     const removeTransaction = (id:string) => {
@@ -47,11 +51,11 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         return `${description}-${Math.random()+amount}${Math.random()+Number(dateSplitted[0]+dateSplitted[1]+dateSplitted[2])}`
     }
 
-    const [transactions, setTransactions] = useState([
+    const [transactions, setTransactions] = useState<TransactionData[]>([
         {
             id: 'minhamae123',
             description: 'Mother gift',
-            amount: 100025,
+            amount: -100025,
             date: '25/03/2020'
         },
         {
@@ -94,7 +98,6 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
             expenses,
             total,
             transactions,
-            generateHash,
             formatAmount,
             addTransaction,
             removeTransaction

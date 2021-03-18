@@ -4,7 +4,7 @@ import { Transactions } from '../../contexts/TransactionsContext'
 import styles from '../../styles/components/DataTable.module.css'
 
 export const DataTable = () => {
-    const {transactions, removeTransaction} = useContext(Transactions)
+    const {transactions, removeTransaction, formatAmount} = useContext(Transactions)
 
     return (
         <div className={styles.dataTableContainer}>
@@ -22,7 +22,7 @@ export const DataTable = () => {
                         const {description, amount, date, id} = transaction
                         return (<tr key={id}>
                             <td>{description}</td>
-                            <td>{amount}</td>
+                            <td>{formatAmount(amount)}</td>
                             <td>{date}</td>
                             <td onClick={()=>{removeTransaction(id)}}>
                                 <img src="icons/minus.svg" />
