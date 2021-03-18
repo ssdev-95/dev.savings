@@ -47,6 +47,13 @@ a {
 
 .totals {
   background: var(--my-green);
+  color: var(--full-white);
+}
+.incomes p {
+  color: var(--my-green);
+}
+.expenses p {
+  color: var(--my-red);
 }
 
 .expenses,

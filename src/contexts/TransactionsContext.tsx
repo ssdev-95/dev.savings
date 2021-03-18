@@ -29,7 +29,7 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         setTransactions([...transactions, {
             id: generateHash(transaction.description,transaction.amount,transaction.date),
             description: transaction.description,
-            amount: transaction.amount,
+            amount: Number(transaction.amount)*100,
             date: transaction.date
         }])
     }
@@ -41,8 +41,16 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         setTransactions(transactions.splice(index, 1))
     }
 
+    const reload = () => {
+        setIncomes(0)
+        setExpenses(0)
+        setTotal(0)
+    }
+
     const formatAmount = (value:number) => {
-        let amount = String(value/100).replace(/('-')/,'$1 R$')
+        const signal = value<0?'- R$ ':'R$ '
+        const numbered = value<0?Number((value/100)*(-1)):Number(value/100)
+        let amount = signal+String(numbered.toFixed(2))
         return amount
     }
 
@@ -52,7 +60,7 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     }
 
     const [transactions, setTransactions] = useState<TransactionData[]>([
-        {
+       /* {
             id: 'minhamae123',
             description: 'Mother gift',
             amount: -100025,
@@ -63,7 +71,7 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
             description: 'Father gift',
             amount: 300025,
             date: '25/03/2020'
-        },
+        },*/
 ])
 
     const [incomes, setIncomes] = useState(0)
@@ -73,24 +81,37 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     const [total, setTotal] = useState(0)
 
     useEffect(()=>{
-        setIncomes(0)
-        setExpenses(0)
-        setTotal(0)
-        transactions.map(transaction=>{
-            if(transactions.length>0) {
+        reload()
+        if(transactions.length>0) {
+            transactions.map(transaction=>{
                 const {amount} = transaction
 
-                if(transaction.amount>0){setIncomes(incomes+amount)}
-
-                if(transaction.amount<0){setExpenses(expenses+amount)}
-            }
+                if(transaction.amount>0){
+                    let income = incomes+amount
+                    setIncomes(income)
+                } else if(transaction.amount<0){
+                    let expense = expenses+amount
+                    setExpenses(expense)
+                }
+            })
+        }
+        //remove later
+        transactions.map(transa=>{
+            console.log(`amount: ${formatAmount(transa.amount)}`)
         })
-        alert(transactions.length)
     }, [transactions])
 
     useEffect(()=>{
         setTotal(incomes+expenses)
     }, [incomes, expenses])
+
+    useEffect(()=>{
+        console.log(`
+            incomes: ${incomes},
+            expenses: ${expenses},
+            total: ${total}
+        `)
+    },[transactions, incomes, expenses, total])
 
     return (
         <Transactions.Provider value={{

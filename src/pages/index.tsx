@@ -27,9 +27,9 @@ export default function Home() {
         <img src="icons/logo.svg" alt=""/>
       </nav>
       <main className={styles.content}>
-        <Card cname='incomes' dispValue={incomes} />
-        <Card cname='expenses' dispValue={expenses}  />
-        <Card cname='totals' dispValue={total}  />
+        <Card cname='incomes' dispValue={formatAmount(incomes)} />
+        <Card cname='expenses' dispValue={formatAmount(expenses)}  />
+        <Card cname='totals' dispValue={formatAmount(total)}  />
         <DataTable />
       </main>
     </div>

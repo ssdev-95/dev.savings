@@ -20,9 +20,10 @@ export const DataTable = () => {
                 <tbody>
                     {transactions.map(transaction=>{
                         const {description, amount, date, id} = transaction
+                        const textcolor = amount < 0 ? '#ff0000' : '#00ff00'
                         return (<tr key={id}>
                             <td>{description}</td>
-                            <td>{formatAmount(amount)}</td>
+                            <td style={{color: textcolor}}>{formatAmount(amount)}</td>
                             <td>{date}</td>
                             <td onClick={()=>{removeTransaction(id)}}>
                                 <img src="icons/minus.svg" />
