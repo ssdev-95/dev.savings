@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {Card} from '../components/Card'
 import {DataTable} from '../components/DataTable'
 import {AddProductModal} from '../components/AddProductModal'
@@ -10,6 +10,8 @@ import styles from '../styles/pages/Home.module.css'
 
 export default function Home() {
   const { formatAmount, incomes, expenses, total } = useContext(Transactions)
+
+  const [totalColor, setTotalColor] = useState({text: '', bg: ''})
 
   const { isModalOpen, toggleModal } = useContext(AddProductModalContext)
 
