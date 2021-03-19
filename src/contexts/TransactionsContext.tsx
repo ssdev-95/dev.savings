@@ -112,11 +112,18 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
 
     useEffect(()=>{
         reload()
-        transactions.forEach(transaction=>{
+        
+        let entries = 0
+        let exits = 0
+
+        transactions.map(transaction => {
             let {amount} = transaction
-            amount>=0 ? setIncomes(incomes+amount) : setExpenses(expenses+amount)
+            amount>=0 ? (entries+=amount) : (exits+=amount)
         })
-    }, [])
+
+        setIncomes(entries)
+        setExpenses(exits)
+    }, [transactions])
     
 
     useEffect(()=>{
