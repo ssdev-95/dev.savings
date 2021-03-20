@@ -35,10 +35,13 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     }
     
     const removeTransaction = (id:string) => {
-        const index = transactions.map(transaction=>{
-            if(transaction.id==id) return transactions.indexOf(transaction)
-        })[0]
-        setTransactions(transactions.splice(index, 1))
+        let newTransactions = transactions
+        let index = 0
+        newTransactions.forEach(transaction=>{
+            if(transaction.id==id) {index = transactions.indexOf(transaction)}
+        })
+        newTransactions.splice(index, 1)
+        setTransactions(newTransactions)
     }
 
     const reload = () => {
@@ -73,19 +76,19 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
             date: '25/03/2020'
         },
         {
-            id: 'sdfg2-545',
+            id: 'sdfg2545',
             description: 'lorem',
             amount: -200000,
             date:'526/656/2006'
         },
         {
-            id: '54dgwa4-545',
+            id: '54dgwa4545',
             description: 'ipsum',
             amount: 500000,
             date:'526/656/2006'
         },
         {
-            id: 'sdjhjdjjawj-545',
+            id: 'sdjhjdjjawj545',
             description: 'dolor',
             amount: -150000,
             date:'526/656/2006'
@@ -97,7 +100,7 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
             date:'526/656/2006'
         },
         {
-            id: 'jahdjhae.l474sdfg2-545',
+            id: 'jahdjhael474sdfg2545',
             description: 'amet',
             amount: -7000,
             date:'526/656/2006'
