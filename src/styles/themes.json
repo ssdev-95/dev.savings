@@ -1,31 +1,32 @@
-{
-    "themes": [
-        {"name":"light", "colors":[
-            {"name":"some_texts", "color":"#000"},
-            {"name":"header", "color":"#12a454"},
-            {"name":"body", "color":"#f0f2f5"},
-            {"name":"cards", "color":"#fff"},
-            {"name":"cardsTotal", "color":"#3dd705"},
-            {"name":"toogle", "color":"#000"},
-            {"name":"footer", "color":"#363f5f"}
-        ]},
-        {"name":"dark", "colors":[
-            {"name":"some_texts", "color":"#fff"},
-            {"name":"header", "color":"#000"},
-            {"name":"body", "color":"#484d50"},
-            {"name":"cards", "color":"#40e0d0"},
-            {"name":"cardsTotal", "color":"#3dd705"},
-            {"name":"toogle", "color":"#0037a4"},
-            {"name":"footer", "color":"#fff"}
-        ]},
-        {"name":"rocketseat", "colors":[
-            {"name":"some_texts", "color":"#fff"},
-            {"name":"header", "color":"#7159c1"},
-            {"name":"body", "color":"#000"},
-            {"name":"cards", "color":"#9370db"},
-            {"name":"cardsTotal", "color":"#8a2be2"},
-            {"name":"toogle", "color":"#fe6e00"},
-            {"name":"footer", "color":"#fff"}
-        ]}
-    ]
-}
+[
+        {"name":"light", "colors":{
+            "someTexts":"#000",
+            "header":"#2d4a22",
+            "body":"#f0f2f5",
+            "cards":"#fff",
+            "cardsTotal":"#3dd705",
+            "toogle":"#000",
+            "footer":"#363f5f"
+            }
+        },
+        {"name":"dark", "colors":{
+            "someTexts":"#fff",
+            "header":"#000",
+            "body":"#484d50",
+            "cards":"#40e0d0",
+            "cardsTotal":"#3dd705",
+            "toogle":"#0037a4",
+            "footer":"#fff"
+            }
+        },
+        {"name":"rocket", "colors":{
+            "someTexts":"#fff",
+            "header":"#7159c1",
+            "body":"#000",
+            "cards":"#9370db",
+            "cardsTotal":"#8a2be2",
+            "toogle":"#fe6e00",
+            "footer":"#fff"
+            }
+        }
+]
