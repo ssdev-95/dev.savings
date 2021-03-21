@@ -83,8 +83,8 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
 
         setIncomes(entries)
         setExpenses(exits)
+        console.log(transactions)
     }, [transactions])
-    
 
     useEffect(()=>{
         setTotal(incomes+expenses)
