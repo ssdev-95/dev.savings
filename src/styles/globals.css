@@ -32,7 +32,6 @@
 html,
 body {
   font-family: 'Red Hat Text', monospace;
-  background: var(--my-white);
 }
 
 body {

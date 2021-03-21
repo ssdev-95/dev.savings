@@ -1,4 +1,6 @@
-import React, {ReactNode, useState, createContext} from 'react'
+import React, {ReactNode, useState, useEffect, createContext} from 'react'
+
+import Themes from '../styles/themes.json'
 
 interface SliderButtonProviderProps {
     children: ReactNode;
@@ -6,7 +8,18 @@ interface SliderButtonProviderProps {
 
 interface SliderButtonContextData {
     theme: ThemeData;
+    colors: ColorData;
     toggleTheme: (params)=>void;
+}
+
+interface ColorData {
+    "someTexts": string;
+    "header": string;
+    "body": string;
+    "cards": string;
+    "cardsTotal": string;
+    "toogle": string;
+    "table": string;
 }
 
 interface ThemeData {
@@ -18,7 +31,7 @@ interface ThemeData {
 export const SliderButtonContext = createContext({} as SliderButtonContextData)
 
 export const SliderButtonContextProvider = ({children}: SliderButtonProviderProps) => {
-    const swiftch = {
+    const themes = {
         light:{
             position: '0',
             bg: '#5f5c5c',
@@ -27,7 +40,7 @@ export const SliderButtonContextProvider = ({children}: SliderButtonProviderProp
         dark:{
             position: '1.85rem',
             bg: '#2a2a2a',
-            name: 'light'
+            name: 'dark'
         },
         rocket:{
             position: '3.7rem',
@@ -36,11 +49,13 @@ export const SliderButtonContextProvider = ({children}: SliderButtonProviderProp
         }
     }
 
-    const [theme, setTheme] = useState(swiftch.light)
+    const [theme, setTheme] = useState(themes.light)
+
+    const [colors, setColors]= useState<ColorData>(Themes[0].colors)
     
     const toggleTheme = event => {
         const targetto = event.target.id
-        let {light, dark, rocket} = swiftch
+        let {light, dark, rocket} = themes
         switch(targetto) {
             case 'default':
                 setTheme(light)
@@ -57,9 +72,28 @@ export const SliderButtonContextProvider = ({children}: SliderButtonProviderProp
         }
     }
 
+
+  useEffect(()=>{
+    switch(theme.name) {
+      case 'light':
+        setColors(Themes[0].colors)
+        break
+      case 'dark':
+        setColors(Themes[1].colors)
+        break
+      case 'rocket':
+        setColors(Themes[2].colors)
+        break
+      default:
+        alert('404 - No such theme')
+        break
+    }
+  }, [theme])
+
     return (
         <SliderButtonContext.Provider value={{
             theme,
+            colors,
             toggleTheme
         }}>
             {children}

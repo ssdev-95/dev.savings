@@ -3,14 +3,14 @@ import { Transactions } from '../../contexts/TransactionsContext'
 
 import styles from '../../styles/components/DataTable.module.css'
 
-export const DataTable = () => {
+export const DataTable = (props) => {
     const {transactions, removeTransaction, formatAmount} = useContext(Transactions)
 
     return (
         <div className={styles.dataTableContainer}>
             <table className={styles.dataTable}>
                 <thead>
-                    <tr>
+                    <tr style={{color: props.text}}>
                         <td>Description</td>
                         <td>Amount</td>
                         <td>Date</td>
@@ -21,7 +21,7 @@ export const DataTable = () => {
                     {transactions.map(transaction=>{
                         const {description, amount, date, id} = transaction
                         const textcolor = amount < 0 ? '#ff0000' : '#00ff00'
-                        return (<tr key={id}>
+                        return (<tr key={id} style={{color: props.text}}>
                             <td>{description}</td>
                             <td style={{color: textcolor}}>{formatAmount(amount)}</td>
                             <td>{date}</td>

@@ -1,22 +1,22 @@
 [
         {"name":"light", "colors":{
-            "someTexts":"#000",
+            "someTexts":"rgba(0,0,0,.5)",
             "header":"#2d4a22",
             "body":"#f0f2f5",
             "cards":"#fff",
             "cardsTotal":"#3dd705",
             "toogle":"#000",
-            "footer":"#363f5f"
+            "table":"rgba(0,0,0,.5)"
             }
         },
         {"name":"dark", "colors":{
-            "someTexts":"#fff",
+            "someTexts":"rgba(0,0,0,.5)",
             "header":"#000",
             "body":"#484d50",
-            "cards":"#40e0d0",
-            "cardsTotal":"#3dd705",
+            "cards":"#f0f2f5",
+            "cardsTotal":"#40e0d0",
             "toogle":"#0037a4",
-            "footer":"#fff"
+            "table":"#fff"
             }
         },
         {"name":"rocket", "colors":{
@@ -26,7 +26,7 @@
             "cards":"#9370db",
             "cardsTotal":"#8a2be2",
             "toogle":"#fe6e00",
-            "footer":"#fff"
+            "table":"#fff"
             }
         }
 ]

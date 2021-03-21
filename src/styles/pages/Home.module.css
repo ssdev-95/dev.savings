@@ -1,7 +1,8 @@
 
 .container {
   position: relative;
-  max-height: 40vh;
+  height: 100vh;
+  background: var(--my-white);
 }
 
 .addButton {

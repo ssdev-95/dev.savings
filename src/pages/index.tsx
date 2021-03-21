@@ -8,15 +8,12 @@ import { AddProductModalContext } from '../contexts/AddProductModalContext'
 import { SliderButtonContext } from '../contexts/SliderButtonContext'
 import { SliderButton } from '../components/SliderButton'
 
-import Themes from '../styles/themes.json'
 import styles from '../styles/pages/Home.module.css'
 
 export default function Home() {
   const { formatAmount, incomes, expenses, total } = useContext(Transactions)
 
-  const {theme} = useContext(SliderButtonContext)
-
-  const [colors, setColors]= useState(Themes[0].colors)
+  const {colors} = useContext(SliderButtonContext)
 
   const { isModalOpen, toggleModal } = useContext(AddProductModalContext)
 
@@ -27,25 +24,8 @@ export default function Home() {
     toggleModal()
   }
 
-  useEffect(()=>{
-    switch(theme.name) {
-      case 'light':
-        setColors(Themes[0].colors)
-        break
-      case 'dark':
-        setColors(Themes[1].colors)
-        break
-      case 'rocket':
-        setColors(Themes[2].colors)
-        break
-      default:
-        alert('404 - No such theme')
-        break
-    }
-  }, [theme])
-
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{background: colors.body}}>
       <SliderButton />
       {isModalOpen&&(<AddProductModal />)}
       <a className={styles.addButton} onClick={openAddProductModal} href="#">+</a>
@@ -53,10 +33,10 @@ export default function Home() {
         <img src="icons/logo.svg" alt=""/>
       </nav>
       <main className={styles.content}>
-        <Card cname='incomes' dispValue={formatAmount(incomes)} />
-        <Card cname='expenses' dispValue={formatAmount(expenses)}  />
-        <Card cname='totals' dispValue={formatAmount(total)}  />
-        <DataTable />
+        <Card bg={colors.cards} text={colors.someTexts} cname='incomes' dispValue={formatAmount(incomes)} />
+        <Card bg={colors.cards} text={colors.someTexts} cname='expenses' dispValue={formatAmount(expenses)}  />
+        <Card bg={colors.cardsTotal} text={'#fff'} cname='totals' dispValue={formatAmount(total)}  />
+        <DataTable text={colors.table} />
       </main>
     </div>
   )
