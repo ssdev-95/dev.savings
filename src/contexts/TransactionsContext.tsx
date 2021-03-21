@@ -62,51 +62,8 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         return `${description}-${Math.random()+amount}${Math.random()+Number(dateSplitted[0]+dateSplitted[1]+dateSplitted[2])}`
     }
 
-    const [transactions, setTransactions] = useState<TransactionData[]>([
-        {
-            id: 'minhamae123',
-            description: 'Mother gift',
-            amount: -100025,
-            date: '25/03/2020'
-        },
-        {
-            id: 'meupai123',
-            description: 'Father gift',
-            amount: 300025,
-            date: '25/03/2020'
-        },
-        {
-            id: 'sdfg2545',
-            description: 'lorem',
-            amount: -200000,
-            date:'526/656/2006'
-        },
-        {
-            id: '54dgwa4545',
-            description: 'ipsum',
-            amount: 500000,
-            date:'526/656/2006'
-        },
-        {
-            id: 'sdjhjdjjawj545',
-            description: 'dolor',
-            amount: -150000,
-            date:'526/656/2006'
-        },
-        {
-            id: 'sdasagjjfg2-545',
-            description: 'sit',
-            amount: 20000,
-            date:'526/656/2006'
-        },
-        {
-            id: 'jahdjhael474sdfg2545',
-            description: 'amet',
-            amount: -7000,
-            date:'526/656/2006'
-        }
-])
-
+    const [transactions, setTransactions] = useState<TransactionData[]>([])
+    
     const [incomes, setIncomes] = useState(0)
 
     const [expenses, setExpenses] = useState(0)
