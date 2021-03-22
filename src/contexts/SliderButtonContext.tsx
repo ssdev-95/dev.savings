@@ -1,4 +1,5 @@
 import React, {ReactNode, useState, useEffect, createContext} from 'react'
+import {useCookies} from 'react-cookie'
 
 import Themes from '../styles/themes.json'
 
@@ -18,7 +19,7 @@ interface ColorData {
     "body": string;
     "cards": string;
     "cardsTotal": string;
-    "toogle": string;
+    "addButton": string;
     "table": string;
 }
 
@@ -31,6 +32,8 @@ interface ThemeData {
 export const SliderButtonContext = createContext({} as SliderButtonContextData)
 
 export const SliderButtonContextProvider = ({children}: SliderButtonProviderProps) => {
+    const [cookies, setCookies] = useCookies(['theme', "position"])
+
     const themes = {
         light:{
             position: '0',
@@ -49,7 +52,7 @@ export const SliderButtonContextProvider = ({children}: SliderButtonProviderProp
         }
     }
 
-    const [theme, setTheme] = useState(themes.light)
+    const [theme, setTheme] = useState(cookies.theme || themes.light)
 
     const [colors, setColors]= useState<ColorData>(Themes[0].colors)
     
@@ -88,6 +91,7 @@ export const SliderButtonContextProvider = ({children}: SliderButtonProviderProp
         alert('404 - No such theme')
         break
     }
+    setCookies('theme', theme)
   }, [theme])
 
     return (

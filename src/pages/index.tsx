@@ -28,14 +28,30 @@ export default function Home() {
     <div className={styles.container} style={{background: colors.body}}>
       <SliderButton />
       {isModalOpen&&(<AddProductModal />)}
-      <a className={styles.addButton} onClick={openAddProductModal} href="#">+</a>
+      <a 
+        className={styles.addButton} 
+        onClick={openAddProductModal}
+        href="#" 
+        style={{color: colors.addButton, borderColor: colors.addButton}}>+</a>
       <nav className={styles.navBar} style={{background: colors.header}}>
         <img src="icons/logo.svg" alt=""/>
       </nav>
       <main className={styles.content}>
-        <Card bg={colors.cards} text={colors.someTexts} cname='incomes' dispValue={formatAmount(incomes)} />
-        <Card bg={colors.cards} text={colors.someTexts} cname='expenses' dispValue={formatAmount(expenses)}  />
-        <Card bg={colors.cardsTotal} text={'#fff'} cname='totals' dispValue={formatAmount(total)}  />
+        <Card 
+            bg={colors.cards} 
+            text={colors.someTexts} 
+            cname='incomes' 
+            dispValue={formatAmount(incomes)} />
+        <Card 
+            bg={colors.cards} 
+            text={colors.someTexts} 
+            cname='expenses' 
+            dispValue={formatAmount(expenses)}  />
+        <Card 
+            bg={colors.cardsTotal} 
+            text={'#fff'} 
+            cname='totals' 
+            dispValue={formatAmount(total)}  />
         <DataTable text={colors.table} />
       </main>
     </div>

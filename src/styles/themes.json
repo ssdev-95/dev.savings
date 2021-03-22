@@ -5,7 +5,7 @@
             "body":"#f0f2f5",
             "cards":"#fff",
             "cardsTotal":"#3dd705",
-            "toogle":"#000",
+            "addButton":"#49aa26",
             "table":"rgba(0,0,0,.5)"
             }
         },
@@ -15,7 +15,7 @@
             "body":"#484d50",
             "cards":"#f0f2f5",
             "cardsTotal":"#40e0d0",
-            "toogle":"#0037a4",
+            "addButton":"#40e0d0",
             "table":"#fff"
             }
         },
@@ -25,7 +25,7 @@
             "body":"#000",
             "cards":"#9370db",
             "cardsTotal":"#8a2be2",
-            "toogle":"#fe6e00",
+            "addButton":"#6705b8",
             "table":"#fff"
             }
         }
