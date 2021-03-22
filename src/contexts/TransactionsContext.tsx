@@ -26,8 +26,9 @@ export const Transactions = createContext({} as TransactionsData)
 export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
 
     const addTransaction = (transaction) => {
+        const {description, amount, date} = transaction
         setTransactions([...transactions, {
-            id: generateHash(transaction.description,transaction.amount,transaction.date),
+            id: generateHash(description,amount,date),
             description: transaction.description,
             amount: Number(transaction.amount)*100,
             date: transaction.date
@@ -42,12 +43,13 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         })
         newTransactions.splice(index, 1)
         setTransactions(newTransactions)
+        reload()
     }
 
     const reload = () => {
         setIncomes(0)
         setExpenses(0)
-        setTotal(0)
+        //setTotal(0)
     }
 
     const formatAmount = (value:number) => {
@@ -58,8 +60,9 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     }
 
     const generateHash = (description, amount, date) => {
+        const descriptionSplitted = description.split(' ')
         const dateSplitted = date.split('-')
-        return `${description}-${Math.random()+amount}${Math.random()+Number(dateSplitted[0]+dateSplitted[1]+dateSplitted[2])}`
+        return `${descriptionSplitted.toString()}-${Math.random()+amount}${Math.random()+Number(dateSplitted[0]+dateSplitted[1]+dateSplitted[2])}`
     }
 
     const [transactions, setTransactions] = useState<TransactionData[]>([])
@@ -84,7 +87,7 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         setIncomes(entries)
         setExpenses(exits)
         console.log(transactions)
-    }, [transactions])
+    }, [transactions,incomes, expenses])
 
     useEffect(()=>{
         setTotal(incomes+expenses)
