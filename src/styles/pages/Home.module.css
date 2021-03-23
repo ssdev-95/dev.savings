@@ -3,12 +3,13 @@
   position: relative;
   height: 100vh;
   background: var(--my-white);
+  overflow:hidden;
 }
 
 .addButton {
   position: absolute;
-  top: 24rem;
-  right: 34rem;
+  top: 7rem;
+  right: 33%;
 
   height: 45px;
   width: 45px;

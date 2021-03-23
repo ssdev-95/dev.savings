@@ -54,3 +54,5 @@ _bckup/
 #add later
 /scripts/transaction.js
 
+
+/src/pages/api/
