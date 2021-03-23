@@ -8,7 +8,6 @@ interface SliderButtonProviderProps {
 }
 
 interface SliderButtonContextData {
-    theme: ThemeData;
     colors: ColorData;
     toggleTheme: (params)=>void;
 }
@@ -21,11 +20,11 @@ interface ColorData {
     "cardsTotal": string;
     "addButton": string;
     "table": string;
+    "sliderBg": string;
+    "thumbPos": string;
 }
 
 interface ThemeData {
-    position: string;
-    bg: string;
     name: string;
 }
 
@@ -36,18 +35,12 @@ export const SliderButtonContextProvider = ({children}: SliderButtonProviderProp
 
     const themes = {
         light:{
-            position: '0',
-            bg: '#5f5c5c',
             name: 'light'
         },
         dark:{
-            position: '1.85rem',
-            bg: '#2a2a2a',
             name: 'dark'
         },
         rocket:{
-            position: '3.7rem',
-            bg: '#6705b8',
             name: 'rocket'
         }
     }
@@ -96,7 +89,6 @@ export const SliderButtonContextProvider = ({children}: SliderButtonProviderProp
 
     return (
         <SliderButtonContext.Provider value={{
-            theme,
             colors,
             toggleTheme
         }}>
