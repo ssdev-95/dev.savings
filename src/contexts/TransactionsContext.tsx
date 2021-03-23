@@ -60,9 +60,13 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     }
 
     const generateHash = (description, amount, date) => {
-        const descriptionSplitted = description.split(' ')
+        const descriptionSplitted = description
+                                            .split(' ')
+                                            .toString()
+                                            .replace(/\,/, '')
+                                            .toLowerCase()
         const dateSplitted = date.split('-')
-        return `${descriptionSplitted.toString()}-${Math.random()+amount}${Math.random()+Number(dateSplitted[0]+dateSplitted[1]+dateSplitted[2])}`
+        return `${descriptionSplitted}-${Math.random()+amount}${Math.random()+Number(Number(dateSplitted[0])+Number(dateSplitted[1])+Number(dateSplitted[2]))}`
     }
 
     const [transactions, setTransactions] = useState<TransactionData[]>([])
