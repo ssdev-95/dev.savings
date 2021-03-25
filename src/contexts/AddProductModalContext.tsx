@@ -1,4 +1,5 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react'
+import {sendToDatabase} from '../pages/api/transactionsManager'
 import { Transactions } from './TransactionsContext'
 
 interface AddProductModalContextData {
@@ -22,7 +23,11 @@ export const AddProductModalContextProvider = ({children}: AddProductModalContex
     }
 
     const submit = (data) => {
-        addTransaction(data)
+        sendToDatabase({
+            description: data.description,
+            amount: Number(data.amount)*100,
+            date: data.date
+        })
         toggleModal()
     }
     

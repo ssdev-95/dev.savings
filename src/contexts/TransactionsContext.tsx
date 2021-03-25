@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import {retrieveTransactions, removeTransaction} from '../pages/api/transactionsManager'
 
 interface TransactionData {
     id: string;
@@ -25,25 +26,12 @@ export const Transactions = createContext({} as TransactionsData)
 
 export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
 
-    const addTransaction = (transaction) => {
-        const {description, amount, date} = transaction
-        setTransactions([...transactions, {
-            id: generateHash(description,amount,date),
-            description: transaction.description,
-            amount: Number(transaction.amount)*100,
-            date: transaction.date
-        }])
+    const addTransaction = () => {
+        setTransactions(retrieveTransactions())
     }
     
     const removeTransaction = (id:string) => {
-        let newTransactions = transactions
-        let index = 0
-        newTransactions.forEach(transaction=>{
-            if(transaction.id==id) {index = transactions.indexOf(transaction)}
-        })
-        newTransactions.splice(index, 1)
-        setTransactions(newTransactions)
-        reload()
+        removeTransaction(id)
     }
 
     const reload = () => {
@@ -78,6 +66,10 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     const [total, setTotal] = useState(0)
 
     useEffect(()=>{
+        setTransactions(retrieveTransactions())
+    }, [])
+
+    useEffect(()=>{
         reload()
         
         let entries = 0
@@ -91,9 +83,10 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         setIncomes(entries)
         setExpenses(exits)
         console.log(transactions)
-    }, [transactions,incomes, expenses])
+    }, [transactions, incomes, expenses])
 
     useEffect(()=>{
+        console.log(`incomes: ${incomes}, expenses: ${expenses}`)
         setTotal(incomes+expenses)
     }, [incomes, expenses])
 
