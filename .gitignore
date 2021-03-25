@@ -53,6 +53,3 @@ _bckup/
 #remove for now
 #add later
 /scripts/transaction.js
-
-
-/src/pages/api/
