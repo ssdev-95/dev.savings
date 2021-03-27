@@ -1,6 +1,6 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react'
 import {onCreate} from '../pages/api/transactionsManager'
-//import { Transactions } from './TransactionsContext'
+import { Transactions } from './TransactionsContext'
 
 interface AddProductModalContextData {
     submit: (data) => void;
@@ -16,7 +16,7 @@ export const AddProductModalContext = createContext({} as AddProductModalContext
 
 export const AddProductModalContextProvider = ({children}: AddProductModalContextProviderProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
-    //const {addTransaction} = useContext(Transactions)
+    const {reload} = useContext(Transactions)
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen)
@@ -29,6 +29,7 @@ export const AddProductModalContextProvider = ({children}: AddProductModalContex
             date: data.date
         })
         toggleModal()
+        reload()
     }
     
     return (

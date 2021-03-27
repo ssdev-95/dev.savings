@@ -69,23 +69,23 @@ export const SliderButtonContextProvider = ({children}: SliderButtonProviderProp
     }
 
 
-  useEffect(()=>{
-    switch(theme.name) {
-      case 'light':
-        setColors(Themes[0].colors)
-        break
-      case 'dark':
-        setColors(Themes[1].colors)
-        break
-      case 'rocket':
-        setColors(Themes[2].colors)
-        break
-      default:
-        alert('404 - No such theme')
-        break
-    }
-    setCookies('theme', theme)
-  }, [theme])
+    useEffect(()=>{
+        switch(theme.name) {
+        case 'light':
+            setColors(Themes[0].colors)
+            break
+        case 'dark':
+            setColors(Themes[1].colors)
+            break
+        case 'rocket':
+            setColors(Themes[2].colors)
+            break
+        default:
+            alert('404 - No such theme')
+            break
+        }
+        setCookies('theme', theme)
+    }, [theme])
 
     return (
         <SliderButtonContext.Provider value={{

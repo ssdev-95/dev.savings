@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import {onRetrieve, onDelete} from '../pages/api/transactionsManager'
+import {useCookies} from 'react-cookie'
 
 interface TransactionData {
     id: string;
@@ -18,26 +19,24 @@ interface TransactionsData{
     total: number,
     transactions: TransactionData[],
     formatAmount: (params: number) => string,
-    //addTransaction: (params: TransactionData)=>void,
-    removeTransaction: (params: string) => void
+    removeTransaction: (params: string) => void,
+    reload: ()=>void
 }
 
 export const Transactions = createContext({} as TransactionsData)
 
 export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
-
-    /*const addTransaction = () => {
-        setTransactions(onDelete())
-    }*/
+    const [cookies, setCookies] = useCookies([])
     
     const removeTransaction = (id:string) => {
         onDelete(id)
+        reload()
     }
 
     const reload = () => {
         setIncomes(0)
         setExpenses(0)
-        setTransactions([])
+        setCookies('transactions', onRetrieve())
     }
 
     const formatAmount = (value:number) => {
@@ -46,16 +45,6 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         let amount = signal+String(numbered.toFixed(2))
         return amount
     }
-
-    /*const generateHash = (description, amount, date) => {
-        const descriptionSplitted = description
-                                            .split(' ')
-                                            .toString()
-                                            .replace(/\,/, '')
-                                            .toLowerCase()
-        const dateSplitted = date.split('-')
-        return `${descriptionSplitted}-${Math.random()+amount}${Math.random()+Number(Number(dateSplitted[0])+Number(dateSplitted[1])+Number(dateSplitted[2]))}`
-    }*/
 
     const [transactions, setTransactions] = useState<TransactionData[]>([])
     
@@ -66,16 +55,20 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     const [total, setTotal] = useState(0)
 
     useEffect(()=>{
-        //reload()
-        setTransactions(onRetrieve())
+        reload()
     }, [])
+
+    useEffect(()=>{
+        //setTransactions(JSON.parse(cookies.transactions))
+        console.log(cookies)
+    },[cookies])
 
     useEffect(()=>{
         let entries = incomes
         let withdraws = expenses
         transactions.map(transaction => {
             let {amount} = transaction
-            amount>=0 ? setIncomes(entries+amount) :setExpenses(withdraws+amount)
+            amount>=0 ? setIncomes(entries+amount) : setExpenses(withdraws+amount)
         })
     }, [transactions])
 
@@ -91,7 +84,8 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
             transactions,
             formatAmount,
             //addTransaction,
-            removeTransaction
+            removeTransaction,
+            reload
         }}>
             {children}
         </Transactions.Provider>
