@@ -1,6 +1,6 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react'
-import {sendToDatabase} from '../pages/api/transactionsManager'
-import { Transactions } from './TransactionsContext'
+import {onCreate} from '../pages/api/transactionsManager'
+//import { Transactions } from './TransactionsContext'
 
 interface AddProductModalContextData {
     submit: (data) => void;
@@ -16,14 +16,14 @@ export const AddProductModalContext = createContext({} as AddProductModalContext
 
 export const AddProductModalContextProvider = ({children}: AddProductModalContextProviderProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const {addTransaction} = useContext(Transactions)
+    //const {addTransaction} = useContext(Transactions)
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen)
     }
 
     const submit = (data) => {
-        sendToDatabase({
+        onCreate({
             description: data.description,
             amount: Number(data.amount)*100,
             date: data.date

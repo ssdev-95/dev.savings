@@ -1,6 +1,6 @@
 import firebase from './databaseController'
 
-export const sendToDatabase = (transaction) => {
+export const onCreate = (transaction) => {
     const {description, amount, date} = transaction
     firebase
         .firestore()
@@ -12,7 +12,7 @@ export const sendToDatabase = (transaction) => {
         })
 }
 
-export const retrieveTransactions = () => {
+export const onRetrieve = () => {
     let transactions = []
     firebase
             .firestore()
@@ -33,21 +33,27 @@ export const retrieveTransactions = () => {
     return transactions
 }
 
-export const updateTransaction= () => {}
-
-export const removeTransaction = (id: string) => {
-    function getIndex(docs, doc_id) {
-        return docs.map(doc=>{
-            return doc.id == doc_id && Number(docs.indexOf(doc))
-        })
-    }
-
+export const onUpdate= (id: string, transaction) => {
     firebase
         .firestore()
         .collection('transactions')
-        .onSnapshot(snap=>{
-            snap
-                .docs
-                .splice(getIndex(snap.docs, id), 1)
+        .doc(id)
+        .update({
+            name: transaction.decription,
+            value: transaction.amount,
+            when: transaction.date
+        })
+}
+
+export const onDelete = (id: string) => {
+    firebase
+        .firestore()
+        .collection('transactions')
+        .doc(id)
+        .delete()
+        .then(()=>alert('Status 200 - Sucessfully deleted!'))
+        .catch(error=>{
+            console.log(error)
+            alert('Status 500 - Error deleting document!')
         })
 }

@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import {retrieveTransactions, removeTransaction} from '../pages/api/transactionsManager'
+import {onRetrieve, onDelete} from '../pages/api/transactionsManager'
 
 interface TransactionData {
     id: string;
@@ -18,7 +18,7 @@ interface TransactionsData{
     total: number,
     transactions: TransactionData[],
     formatAmount: (params: number) => string,
-    addTransaction: (params: TransactionData)=>void,
+    //addTransaction: (params: TransactionData)=>void,
     removeTransaction: (params: string) => void
 }
 
@@ -26,18 +26,18 @@ export const Transactions = createContext({} as TransactionsData)
 
 export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
 
-    const addTransaction = () => {
-        setTransactions(retrieveTransactions())
-    }
+    /*const addTransaction = () => {
+        setTransactions(onDelete())
+    }*/
     
     const removeTransaction = (id:string) => {
-        removeTransaction(id)
+        onDelete(id)
     }
 
     const reload = () => {
         setIncomes(0)
         setExpenses(0)
-        //setTotal(0)
+        setTransactions([])
     }
 
     const formatAmount = (value:number) => {
@@ -47,7 +47,7 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         return amount
     }
 
-    const generateHash = (description, amount, date) => {
+    /*const generateHash = (description, amount, date) => {
         const descriptionSplitted = description
                                             .split(' ')
                                             .toString()
@@ -55,7 +55,7 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
                                             .toLowerCase()
         const dateSplitted = date.split('-')
         return `${descriptionSplitted}-${Math.random()+amount}${Math.random()+Number(Number(dateSplitted[0])+Number(dateSplitted[1])+Number(dateSplitted[2]))}`
-    }
+    }*/
 
     const [transactions, setTransactions] = useState<TransactionData[]>([])
     
@@ -66,27 +66,20 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     const [total, setTotal] = useState(0)
 
     useEffect(()=>{
-        setTransactions(retrieveTransactions())
+        //reload()
+        setTransactions(onRetrieve())
     }, [])
 
     useEffect(()=>{
-        reload()
-        
-        let entries = 0
-        let exits = 0
-
+        let entries = incomes
+        let withdraws = expenses
         transactions.map(transaction => {
             let {amount} = transaction
-            amount>=0 ? (entries+=amount) : (exits+=amount)
+            amount>=0 ? setIncomes(entries+amount) :setExpenses(withdraws+amount)
         })
-
-        setIncomes(entries)
-        setExpenses(exits)
-        console.log(transactions)
-    }, [transactions, incomes, expenses])
+    }, [transactions])
 
     useEffect(()=>{
-        console.log(`incomes: ${incomes}, expenses: ${expenses}`)
         setTotal(incomes+expenses)
     }, [incomes, expenses])
 
@@ -97,7 +90,7 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
             total,
             transactions,
             formatAmount,
-            addTransaction,
+            //addTransaction,
             removeTransaction
         }}>
             {children}
