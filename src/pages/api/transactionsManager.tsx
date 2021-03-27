@@ -33,16 +33,17 @@ export const onRetrieve = () => {
     return transactions
 }
 
-export const onUpdate= (id: string, transaction) => {
+export const onUpdate= (id: string, {description, amount, date}) => {
     firebase
         .firestore()
         .collection('transactions')
         .doc(id)
         .update({
-            name: transaction.decription,
-            value: transaction.amount,
-            when: transaction.date
+            name: description,
+            value: amount,
+            when: date
         })
+    //console.log(description+', '+amount+', '+date)
 }
 
 export const onDelete = (id: string) => {

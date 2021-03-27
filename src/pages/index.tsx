@@ -5,10 +5,12 @@ import {AddProductModal} from '../components/AddProductModal'
 
 import { Transactions } from '../contexts/TransactionsContext'
 import { AddProductModalContext } from '../contexts/AddProductModalContext'
+import { UpdateProductModalContext } from '../contexts/UpdateProductModalContext'
 import { SliderButtonContext } from '../contexts/SliderButtonContext'
 import { SliderButton } from '../components/SliderButton'
 
 import styles from '../styles/pages/Home.module.css'
+import { UpdateProductModal } from '../components/UpdateProductModal'
 
 export default function Home() {
   const { formatAmount, incomes, expenses, total } = useContext(Transactions)
@@ -16,6 +18,7 @@ export default function Home() {
   const {colors} = useContext(SliderButtonContext)
 
   const { isModalOpen, toggleModal } = useContext(AddProductModalContext)
+  const { isUpdateModalOpen, toggleUpdateModal } = useContext(UpdateProductModalContext)
 
   const openAddProductModal = event => {
     window.addEventListener('click', ()=>{
@@ -28,6 +31,7 @@ export default function Home() {
     <div className={styles.container} style={{background: colors.body}}>
       <SliderButton />
       {isModalOpen&&(<AddProductModal />)}
+      {isUpdateModalOpen&&(<UpdateProductModal />)}
       <a 
         className={styles.addButton} 
         onClick={openAddProductModal}
