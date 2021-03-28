@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import {onRetrieve, onDelete} from '../pages/api/transactionsManager'
-import {useCookies} from 'react-cookie'
 
 interface TransactionData {
     id: string;
@@ -26,7 +25,6 @@ interface TransactionsData{
 export const Transactions = createContext({} as TransactionsData)
 
 export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
-    const [cookies, setCookies] = useCookies([])
     
     const removeTransaction = (id:string) => {
         onDelete(id)
@@ -36,7 +34,7 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     const reload = () => {
         setIncomes(0)
         setExpenses(0)
-        setCookies('transactions', onRetrieve())
+        return onRetrieve()
     }
 
     const formatAmount = (value:number) => {
@@ -45,6 +43,8 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
         let amount = signal+String(numbered.toFixed(2))
         return amount
     }
+
+    //lmao
 
     const [transactions, setTransactions] = useState<TransactionData[]>([])
     
@@ -55,13 +55,8 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     const [total, setTotal] = useState(0)
 
     useEffect(()=>{
-        reload()
+       setTransactions(reload())
     }, [])
-
-    useEffect(()=>{
-        //setTransactions(JSON.parse(cookies.transactions))
-        console.log(cookies)
-    },[cookies])
 
     useEffect(()=>{
         let entries = incomes

@@ -8,6 +8,36 @@ export const DataTable = (props) => {
     const {transactions, removeTransaction, formatAmount} = useContext(Transactions)
     const {toggleUpdateModal, get} = useContext(UpdateProductModalContext)
 
+    const chils = transactions.length>0&&(
+        transactions.map(transaction=>{
+            const {description, amount, date, id} = transaction
+            const textcolor = amount < 0 ? '#ff0000' : '#00ff00'
+            return (<tr 
+                      key={id} 
+                      style={{color: props.text}}>
+                        <td
+                          onClick={()=> {
+                            toggleUpdateModal(id)
+                            get(description, amount, date)
+                        }}>{description}</td>
+                        <td 
+                          style={{color: textcolor}}
+                          onClick={()=> {
+                            toggleUpdateModal(id)
+                            get(description, amount, date)
+                        }}>{formatAmount(amount)}</td>
+                        <td
+                          onClick={()=> {
+                            toggleUpdateModal(id)
+                            get(description, amount, date)
+                        }}>{date}</td>
+                        <td onClick={()=>{removeTransaction(id)}}>
+                            <img src="icons/minus.svg" />
+                        </td>
+                    </tr>)
+        })
+    )
+
     return (
         <div className={styles.dataTableContainer}>
             <table className={styles.dataTable}>
@@ -20,26 +50,7 @@ export const DataTable = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                    transactions.map(transaction=>{
-                        const {description, amount, date, id} = transaction
-                        const textcolor = amount < 0 ? '#ff0000' : '#00ff00'
-                        return (<tr 
-                                  key={id} 
-                                  style={{color: props.text}}
-                                  onClick={()=> {
-                                    toggleUpdateModal(id)
-                                    get(description, amount, date)
-                                  }}>
-                                    <td>{description}</td>
-                                    <td style={{color: textcolor}}>{formatAmount(amount)}</td>
-                                    <td>{date}</td>
-                                    <td onClick={()=>{removeTransaction(id)}}>
-                                        <img src="icons/minus.svg" />
-                                    </td>
-                                </tr>)
-                    })
-                    }
+                    { chils }
                 </tbody>
             </table>
         </div>
