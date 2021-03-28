@@ -2,15 +2,16 @@
     <img src="./public/icons/logo.svg"/>
 </h1>
 
->># 💰 Dev.Finance$
+>> # 💰 Dev.Finance$
 >>> An web aplication designed to help administrate your finances
 
 ---
 
->>## Summary of Contents
+>> ## Summary of Contents
 >>
 >>> - [Project Status](#project-status)
 >>> - [Features](#features)
+>>> - [Tools Used](#tools-used)
 >>> - [Embed Tecnologies](#embed-tecnologies)
 >>> - [How to run on Your Machine](#how-to-run-on-your-machine)
 >>> - [Known Bugs](#known-bugs)
@@ -18,7 +19,7 @@
 
 ---
 
->>## Project Status
+>> ## Project Status
 >>
 >>> - Working currently finished.
 >>> - Working tree clean.
@@ -30,8 +31,15 @@
 >>> - [x] Add transactions, such as book aquire, a freelance receipt, etc.
 >>> - [x] Save transactions to a database, such as firebase.
 >>> - [x] Remove transactions.
->>> - [ ] Edit a transaction.
+>>> - [x] Edit a transaction.
 >>> - [x] Select between three themes, <i>Normal, Dark and Rocket</i>
+
+---
+>> ## Tools Used
+>>
+>> - [Visual Studio Code&trade;](https://code.visualstudio.com/)
+>> - [Firebase&trade;](https://firebase.google.com)
+>> - [Google Chrome&trade;](https://www.google.com/intl/pt-BR/chrome/)
 
 ---
 
