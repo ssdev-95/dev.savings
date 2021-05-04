@@ -1,5 +1,5 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react'
-import {onCreate} from '../pages/api/transactionsManager'
+import {onCreate} from '../pages/api/transaction'
 import { Transactions } from './TransactionsContext'
 
 interface AddProductModalContextData {

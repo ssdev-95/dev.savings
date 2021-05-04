@@ -10,6 +10,7 @@ import { SliderButtonContext } from '../contexts/SliderButtonContext'
 import { SliderButton } from '../components/SliderButton'
 
 import styles from '../styles/pages/Home.module.css'
+import { GetStaticProps } from 'next'
 import { UpdateProductModal } from '../components/UpdateProductModal'
 
 export default function Home() {
@@ -60,4 +61,14 @@ export default function Home() {
       </main>
     </div>
   )
+}
+
+export const getStaticProps:GetStaticProps = async () => {
+  const transactions = []
+
+  return {
+    props: {
+      transactions
+    }, revalidate: 60*1
+  }
 }

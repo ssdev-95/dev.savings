@@ -1,5 +1,5 @@
 import {ReactNode, createContext, useState, useContext} from 'react'
-import {onUpdate} from '../pages/api/transactionsManager'
+import {onUpdate} from '../pages/api/transaction'
 import { Transactions } from './TransactionsContext'
 
 interface UpdateProductModalContextData {

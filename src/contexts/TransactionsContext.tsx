@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import {onRetrieve, onDelete} from '../pages/api/transactionsManager'
 
 interface TransactionData {
     id: string;
@@ -27,14 +26,14 @@ export const Transactions = createContext({} as TransactionsData)
 export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
     
     const removeTransaction = (id:string) => {
-        onDelete(id)
+        // onDelete(id)
         reload()
     }
 
     const reload = () => {
         setIncomes(0)
         setExpenses(0)
-        return onRetrieve()
+        // return onRetrieve()
     }
 
     const formatAmount = (value:number) => {
@@ -54,9 +53,9 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
 
     const [total, setTotal] = useState(0)
 
-    useEffect(()=>{
-       setTransactions(reload())
-    }, [])
+    // useEffect(()=>{
+    //    setTransactions(reload())
+    // }, [])
 
     useEffect(()=>{
         let entries = incomes
