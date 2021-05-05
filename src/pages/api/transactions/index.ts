@@ -1,46 +1,29 @@
 import { DBConnect } from '@api/dbController'
+import Transaction from '@api/transaction'
 
-const db_name = "finances"
-const collection_name = "transactions"
+DBConnect()
 
 export default async (req, res) => {
-    const client = await DBConnect()
-
-    await client.connect()
-
-    const collection = client.db(db_name).collection(collection_name)
     const { method, body } = req
 
 
     switch(method) {
         case 'GET': 
             try {
-                const data = collection.find({})
+                const data = await Transaction.find({})
 
-                const transactionslist = data.map(doc=>{
-                    const {_id, description, amount, type, date} = doc
+                if(!data) res.status(400).json({success:false, body: 'No data found..'})
 
-                    return {
-                        id: _id,
-                        description: description,
-                        amount: amount,
-                        type: type,
-                        date: date
-                    }
-                })
-
-                if(!data) res.status(400).json({success:false, body: 'Could not find data..'})
-
-                res.status(200).json({success:true, body: transactionslist})
+                res.status(200).json({success:true, body: data})
             } catch(err) {
                 res.status(400).json({success:false, body: 'Could not find data..'})
             }
             break
         case 'POST':
             try {
-                const newData = await collection.insertOne(body)
+                const newData = await Transaction.create(body)
 
-                if(!newData) res.status(400).json({success:false, body: 'Could not insert data..'})
+                if(!newData) res.status(400).json({success:false, body: 'Couldn`t insert data..'})
 
                 res.status(200).json({success:true, body: 'Successfully inserted..'})
             } catch(err) {
@@ -51,6 +34,4 @@ export default async (req, res) => {
             res.status(404).json({success:false, body: 'Page not found..'})
             break
     }
-
-    await client.close()
 }
