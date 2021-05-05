@@ -4,8 +4,8 @@ import { UpdateProductModalContext } from '../../contexts/UpdateProductModalCont
 
 import styles from '../../styles/components/DataTable.module.css'
 
-export const DataTable = (props) => {
-    const {transactions, removeTransaction, formatAmount} = useContext(Transactions)
+export const DataTable = ({ transactions, text}) => {
+    const { formatAmount } = useContext(Transactions)
     const {toggleUpdateModal, get} = useContext(UpdateProductModalContext)
 
     const chils = transactions.length>0&&(
@@ -14,7 +14,7 @@ export const DataTable = (props) => {
             const textcolor = amount < 0 ? '#ff0000' : '#00ff00'
             return (<tr 
                       key={id} 
-                      style={{color: props.text}}>
+                      style={{color: text}}>
                         <td
                           onClick={()=> {
                             toggleUpdateModal(id)
@@ -25,13 +25,13 @@ export const DataTable = (props) => {
                           onClick={()=> {
                             toggleUpdateModal(id)
                             get(description, amount, date)
-                        }}>{formatAmount(amount)}</td>
+                        }}>{amount}</td>
                         <td
                           onClick={()=> {
                             toggleUpdateModal(id)
                             get(description, amount, date)
                         }}>{date}</td>
-                        <td onClick={()=>{removeTransaction(id)}}>
+                        <td onClick={()=>alert(`Sucessfully deleted: ${id}`)}>
                             <img src="icons/minus.svg" />
                         </td>
                     </tr>)
@@ -42,7 +42,7 @@ export const DataTable = (props) => {
         <div className={styles.dataTableContainer}>
             <table className={styles.dataTable}>
                 <thead>
-                    <tr style={{color: props.text}}>
+                    <tr style={{color: text}}>
                         <td>Description</td>
                         <td>Amount</td>
                         <td>Date</td>

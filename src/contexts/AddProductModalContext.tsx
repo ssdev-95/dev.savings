@@ -1,5 +1,4 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react'
-import {onCreate} from '../pages/api/transaction'
 import { Transactions } from './TransactionsContext'
 
 interface AddProductModalContextData {
@@ -23,13 +22,12 @@ export const AddProductModalContextProvider = ({children}: AddProductModalContex
     }
 
     const submit = (data) => {
-        onCreate({
-            description: data.description,
-            amount: Number(data.amount)*100,
-            date: data.date
-        })
+        console.log(`{
+            description: ${data.description},
+            amount: ${Number(data.amount)*100},
+            date: ${data.date}
+        }`)
         toggleModal()
-        reload()
     }
     
     return (

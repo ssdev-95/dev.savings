@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
-import {Card} from '../components/Card'
-import {DataTable} from '../components/DataTable'
-import {AddProductModal} from '../components/AddProductModal'
+import { Card } from '../components/Card'
+import { DataTable } from '../components/DataTable'
+import { AddProductModal } from '../components/AddProductModal'
 
 import { Transactions } from '../contexts/TransactionsContext'
 import { AddProductModalContext } from '../contexts/AddProductModalContext'
@@ -13,10 +13,10 @@ import styles from '../styles/pages/Home.module.css'
 import { GetStaticProps } from 'next'
 import { UpdateProductModal } from '../components/UpdateProductModal'
 
-export default function Home() {
+export default function Home({ transactions }) {
   const { formatAmount, incomes, expenses, total } = useContext(Transactions)
 
-  const {colors} = useContext(SliderButtonContext)
+  const { colors } = useContext(SliderButtonContext)
 
   const { isModalOpen, toggleModal } = useContext(AddProductModalContext)
   const { isUpdateModalOpen, toggleUpdateModal } = useContext(UpdateProductModalContext)
@@ -46,18 +46,18 @@ export default function Home() {
             bg={colors.cards} 
             text={colors.someTexts} 
             cname='incomes' 
-            dispValue={formatAmount(incomes)} />
+            dispValue={incomes} />
         <Card 
             bg={colors.cards} 
             text={colors.someTexts} 
             cname='expenses' 
-            dispValue={formatAmount(expenses)}  />
+            dispValue={expenses}  />
         <Card 
             bg={colors.cardsTotal} 
             text={'#fff'} 
             cname='totals' 
-            dispValue={formatAmount(total)}  />
-        <DataTable text={colors.table} />
+            dispValue={total}  />
+        <DataTable text={colors.table} transactions={transactions} />
       </main>
     </div>
   )
@@ -69,6 +69,6 @@ export const getStaticProps:GetStaticProps = async () => {
   return {
     props: {
       transactions
-    }, revalidate: 60*1
+    }, revalidate: 10
   }
 }

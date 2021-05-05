@@ -1,5 +1,4 @@
 import {ReactNode, createContext, useState, useContext} from 'react'
-import {onUpdate} from '../pages/api/transaction'
 import { Transactions } from './TransactionsContext'
 
 interface UpdateProductModalContextData {
@@ -36,7 +35,7 @@ export const UpdateProductContextProvider = ({children}: UpdateProductContextPro
     const update = data =>  {
         const {description, amount, date} = data
         
-        onUpdate(transactionId, {description, amount, date})
+       console.log(`${description} ${amount} ${date}`)
 
         toggleUpdateModal('')
         reload()
