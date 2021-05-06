@@ -1,10 +1,13 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { useRouter } from 'next/router'
+import fetch from 'isomorphic-unfetch'
 
 interface TransactionData {
     id: string;
     description: string;
     amount: number;
     date: string;
+    op: string;
 }
 
 interface TransactionsProviderProps {
@@ -15,12 +18,15 @@ interface TransactionsData{
     incomes: number,
     expenses: number,
     total: number,
-    formatAmount: (amount: number, op: string) => string
+    formatAmount: (amount: number, op: string) => string,
+    retrieveData: (data:TransactionData[]) => void
+    deleteProduct: (id:string) => void
 }
 
 export const Transactions = createContext({} as TransactionsData)
 
 export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
+    const router = useRouter()
 
     const formatAmount = (value:number, op: string) => {
         const signal = op==='expense'?'- R$ ':'R$ '
@@ -37,15 +43,40 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
 
 
     useEffect(()=>{
-        setTotal(incomes+expenses)
+        setTotal(incomes-expenses)
     }, [incomes, expenses])
+
+    const retrieveData = (data:TransactionData[]) => {
+        data.forEach(doc=>{
+            doc.op==='expense'?setExpenses(expenses+doc.amount):setIncomes(incomes+doc.amount)
+        })
+    }
+
+    const deleteProduct = async (id:String) => {
+        try {
+            const res = await fetch(`http://localhost:3000/api/transactions/${id}`,{
+                method: 'DELETE',
+                headers: {
+                    'Access-Control-Allow-Origin' : '*',
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            })
+        } catch(err) {
+            console.log(err)
+        }
+
+        router.push('/')
+    }
 
     return (
         <Transactions.Provider value={{
             incomes,
             expenses,
             total,
-            formatAmount
+            formatAmount,
+            retrieveData,
+            deleteProduct
         }}>
             {children}
         </Transactions.Provider>

@@ -5,7 +5,7 @@ import { UpdateProductModalContext } from '../../contexts/UpdateProductModalCont
 import styles from '../../styles/components/DataTable.module.css'
 
 export const DataTable = ({ transactions, text}) => {
-    const { formatAmount } = useContext(Transactions)
+    const { formatAmount, deleteProduct } = useContext(Transactions)
     const {toggleUpdateModal, get} = useContext(UpdateProductModalContext)
 
     const chils = transactions.length>0&&(
@@ -31,7 +31,7 @@ export const DataTable = ({ transactions, text}) => {
                             toggleUpdateModal(id)
                             get(description, amount, date)
                         }}>{date}</td>
-                        <td onClick={()=>alert(`Sucessfully deleted: ${id}`)}>
+                        <td onClick={()=>deleteProduct(id)}>
                             <img src="icons/minus.svg" />
                         </td>
                     </tr>)

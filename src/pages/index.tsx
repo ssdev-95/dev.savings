@@ -14,10 +14,9 @@ import { GetStaticProps } from 'next'
 import { UpdateProductModal } from '../components/UpdateProductModal'
 
 import fetch from 'isomorphic-unfetch'
-import { listeners } from 'node:process'
 
 export default function Home({ transactions }) {
-  const { formatAmount, incomes, expenses, total } = useContext(Transactions)
+  const { formatAmount, retrieveData, incomes, expenses, total } = useContext(Transactions)
 
   const { colors } = useContext(SliderButtonContext)
 
@@ -30,6 +29,10 @@ export default function Home({ transactions }) {
     })
     toggleModal()
   }
+
+  useEffect(()=>{
+    retrieveData(transactions)
+  }, [])
 
   return (
     <div className={styles.container} style={{background: colors.body}}>
@@ -49,17 +52,17 @@ export default function Home({ transactions }) {
             bg={colors.cards} 
             text={colors.someTexts} 
             cname='incomes' 
-            dispValue={incomes} />
+            dispValue={formatAmount(incomes, 'incomes')} />
         <Card 
             bg={colors.cards} 
             text={colors.someTexts} 
             cname='expenses' 
-            dispValue={expenses}  />
+            dispValue={formatAmount(expenses, 'expenses')}  />
         <Card 
             bg={colors.cardsTotal} 
             text={'#fff'} 
             cname='totals' 
-            dispValue={total}  />
+            dispValue={`R$ ${String(total/100).replace('.', ',')}`}  />
         <DataTable text={colors.table} transactions={transactions} />
       </main>
     </div>
@@ -78,8 +81,6 @@ export const getStaticProps:GetStaticProps = async () => {
       date: doc.date
     }
   })
-
-  console.log(transactions)
 
   return {
     props: {
