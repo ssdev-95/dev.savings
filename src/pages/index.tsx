@@ -13,6 +13,9 @@ import styles from '../styles/pages/Home.module.css'
 import { GetStaticProps } from 'next'
 import { UpdateProductModal } from '../components/UpdateProductModal'
 
+import fetch from 'isomorphic-unfetch'
+import { listeners } from 'node:process'
+
 export default function Home({ transactions }) {
   const { formatAmount, incomes, expenses, total } = useContext(Transactions)
 
@@ -64,7 +67,19 @@ export default function Home({ transactions }) {
 }
 
 export const getStaticProps:GetStaticProps = async () => {
-  const transactions = []
+  const result = await fetch('http://localhost:3000/api/transactions')
+  const list = await result.json()
+  const transactions = list.body.map(doc=>{
+    return {
+      id: doc._id,
+      description: doc.description,
+      op: doc.op,
+      amount: doc.amount,
+      date: doc.date
+    }
+  })
+
+  console.log(transactions)
 
   return {
     props: {

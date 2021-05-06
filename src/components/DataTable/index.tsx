@@ -10,8 +10,8 @@ export const DataTable = ({ transactions, text}) => {
 
     const chils = transactions.length>0&&(
         transactions.map(transaction=>{
-            const {description, amount, date, id} = transaction
-            const textcolor = amount < 0 ? '#ff0000' : '#00ff00'
+            const {description, amount, date, id, op} = transaction
+            const textcolor = op==='expense'? '#ff0000' : '#00ff00'
             return (<tr 
                       key={id} 
                       style={{color: text}}>
@@ -25,7 +25,7 @@ export const DataTable = ({ transactions, text}) => {
                           onClick={()=> {
                             toggleUpdateModal(id)
                             get(description, amount, date)
-                        }}>{amount}</td>
+                        }}>{formatAmount(amount, op)}</td>
                         <td
                           onClick={()=> {
                             toggleUpdateModal(id)

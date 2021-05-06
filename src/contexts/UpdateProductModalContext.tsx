@@ -1,5 +1,4 @@
 import {ReactNode, createContext, useState, useContext} from 'react'
-import { Transactions } from './TransactionsContext'
 
 interface UpdateProductModalContextData {
     isUpdateModalOpen: boolean;
@@ -20,7 +19,6 @@ interface UpdateProductContextProviderProps {
 export const UpdateProductModalContext = createContext({} as UpdateProductModalContextData)
 
 export const UpdateProductContextProvider = ({children}: UpdateProductContextProviderProps) => {
-    const {reload} = useContext(Transactions)
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
     const [transactionId, setTransactionId] = useState('')
     const [mem, setMem] = useState({name:'', value:0, when:''})
@@ -38,7 +36,6 @@ export const UpdateProductContextProvider = ({children}: UpdateProductContextPro
        console.log(`${description} ${amount} ${date}`)
 
         toggleUpdateModal('')
-        reload()
     }
 
     const get = (name:string, value:number, when:string) => setMem({
