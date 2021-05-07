@@ -43,7 +43,7 @@ export const UpdateProductContextProvider = ({children}: UpdateProductContextPro
             date: date
         }
         
-        const res = await fetch(`http://localhost:3000/api/products/${transactionId}`, {
+        const res = await fetch(`http://localhost:3000/api/transactions/${transactionId}`, {
             method: 'PUT',
             headers:{
                 'Access-Control-Allow-Origin' : '*',

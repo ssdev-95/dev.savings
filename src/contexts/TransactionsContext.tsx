@@ -21,12 +21,19 @@ interface TransactionsData {
     formatAmount: (amount: number, op: string) => string,
     retrieveData: (data: TransactionData[]) => void
     deleteProduct: (id: string) => void
+    formatDate: (date:string) => string
 }
 
 export const Transactions = createContext({} as TransactionsData)
 
 export const TransactionsProvider = ({ children }: TransactionsProviderProps) => {
     const router = useRouter()
+
+    const formatDate = (date:string) => {
+        const formatedDate = date.split('-').reverse().join('/')
+
+        return formatedDate
+    }
 
     const formatAmount = (value: number, op: string) => {
         const signal = op === 'expense' ? '- R$ ' : 'R$ '
@@ -57,8 +64,8 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
             method: 'DELETE',
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                "Accept": "application/json",
-                "Content-Type": "application/json"
+                "Accept": "*",
+                "Content-Type": "*"
             }
         })
 
@@ -74,7 +81,8 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
             total,
             formatAmount,
             retrieveData,
-            deleteProduct
+            deleteProduct,
+            formatDate
         }}>
             {children}
         </Transactions.Provider>
