@@ -11,25 +11,26 @@ export const UpdateProductModal = () => {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.modal}>
-                <input ref={register}
-                 className={styles.description} 
-                 type="text" name="description" 
-                 id="description"
-                 defaultValue={mem.name}/>
+                <input   
+                   {...register('description')}
+                   className={styles.description} 
+                   type="text" name="description" 
+                   id="description"
+                   defaultValue={mem.name}/>
                 <input 
-                 ref={register} 
-                 className={styles.amount} 
-                 type="number" 
-                 name="amount" 
-                 id="amount"
-                 defaultValue={mem.value}/>
+                   {...register('amount')} 
+                   className={styles.amount} 
+                   type="number" 
+                   name="amount" 
+                   id="amount"
+                   defaultValue={mem.value}/>
                 <input 
-                 ref={register} 
-                 className={styles.date} 
-                 type="date" 
-                 name="date" 
-                 id="date"
-                 defaultValue={mem.when}/>
+                   {...register('date')} 
+                   className={styles.date} 
+                   type="date" 
+                   name="date" 
+                   id="date"
+                   defaultValue={mem.when}/>
                 <div className={styles.actions}>
                     <a className={styles.cancelButton} onClick={()=>{
                                 window.addEventListener('click', event=>{

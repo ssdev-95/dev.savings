@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useState} from 'react'
+import { createContext, ReactNode, useState } from 'react'
 import { useRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
 
@@ -14,7 +14,7 @@ interface AddProductModalContextProviderProps {
 
 export const AddProductModalContext = createContext({} as AddProductModalContextData)
 
-export const AddProductModalContextProvider = ({children}: AddProductModalContextProviderProps) => {
+export const AddProductModalContextProvider = ({ children }: AddProductModalContextProviderProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const router = useRouter()
 
@@ -22,38 +22,34 @@ export const AddProductModalContextProvider = ({children}: AddProductModalContex
         setIsModalOpen(!isModalOpen)
     }
 
-    const submit = async (data:any) => {
+    const submit = async (data: any) => {
         const { description, amount, date } = data
-        const op = amount>=0 ? 'income' : 'expense'
+        const op = amount >= 0 ? 'income' : 'expense'
 
         const transaction = {
             description: String(description),
-            amount: Number(amount*(-100)),
+            amount: Number(amount * (-100)),
             date: String(date),
             op: String(op)
         }
 
-        try{
-            const res = await fetch('http://localhost:3000/api/transactions', {
-                method: 'post',
-                headers: {
-                    'Access-Control-Allow-Origin' : '*',
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(transaction)
-            })
+        const res = await fetch('http://localhost:3000/api/transactions', {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(transaction)
+        })
 
-            console.log(res)
-            
-            router.push('/')
-        } catch(err) {
-            console.log(err)
-        }
+        console.log(res)
+
+        router.push('/')
 
         toggleModal()
     }
-    
+
     return (
         <AddProductModalContext.Provider value={{
             submit,
