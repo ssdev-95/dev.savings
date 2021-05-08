@@ -32,7 +32,7 @@
 >>> - [x] Save transactions to a database, such as firebase.
 >>> - [x] Remove transactions.
 >>> - [x] Edit a transaction.
->>> - [x] Select between three themes, <i>Normal, Dark and Rocket</i>
+>>> - [x] Select between three themes, <i>Normal, Dark and Rocket</i>..
 
 ---
 >> ## Tools Used
