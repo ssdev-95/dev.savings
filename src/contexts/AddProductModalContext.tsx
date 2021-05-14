@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from 'react'
 import { useRouter } from 'next/router'
-import fetch from 'isomorphic-unfetch'
+import axios from 'axios'
 
 interface AddProductModalContextData {
     submit: (data) => void;
@@ -33,12 +33,9 @@ export const AddProductModalContextProvider = ({ children }: AddProductModalCont
             op: String(op)
         }
 
-        const res = await fetch('http://localhost:3000/api/transactions', {
-            method: 'POST',
+        const res = await axios.post('http://localhost:3000/api/transactions', {
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                "Accept": "application/json",
-                "Content-Type": "application/json"
+                "Access-Control-Allow-Origin": "*"
             },
             body: JSON.stringify(transaction)
         })

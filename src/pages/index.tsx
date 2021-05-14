@@ -13,7 +13,7 @@ import styles from '../styles/pages/Home.module.css'
 import { GetStaticProps } from 'next'
 import { UpdateProductModal } from '../components/UpdateProductModal'
 
-import fetch from 'isomorphic-unfetch'
+import axios from 'axios'
 
 export default function Home({ transactions }) {
   const { formatAmount, retrieveData, incomes, expenses, total } = useContext(Transactions)
@@ -70,8 +70,8 @@ export default function Home({ transactions }) {
 }
 
 export const getStaticProps:GetStaticProps = async () => {
-  const result = await fetch('http://localhost:3000/api/transactions')
-  const list = await result.json()
+  const result = await axios.get('http://localhost:3000/api/transactions')
+  const list = await result.data
   const transactions = list.body.map(doc=>{
     return {
       id: doc._id,

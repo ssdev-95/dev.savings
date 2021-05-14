@@ -6,7 +6,6 @@ DBConnect()
 export default async (req, res) => {
     const { method, body } = req
 
-
     switch(method) {
         case 'GET': 
             try {
@@ -24,7 +23,7 @@ export default async (req, res) => {
                 const newData = await Transaction.create(body)
 
                 if(!newData) res.status(400).json({success:false, body: 'Couldn`t insert data..'})
-
+                
                 res.status(200).json({success:true, body: 'Successfully inserted..'})
             } catch(err) {
                 res.status(400).json({success:false, body: 'Could not insert data..'})

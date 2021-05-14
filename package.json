@@ -2,12 +2,14 @@
   "name": "dev.finances",
   "version": "0.5.0",
   "private": true,
+  "proxy": "http://192.168.0.20:3000",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "isomorphic-unfetch": "^3.1.0",
     "mongodb": "^3.6.6",
     "mongoose": "^5.12.7",
