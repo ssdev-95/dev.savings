@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Card } from '../components/Card'
 import { DataTable } from '../components/DataTable'
 import { AddProductModal } from '../components/AddProductModal'
@@ -9,19 +9,22 @@ import { UpdateProductModalContext } from '../contexts/UpdateProductModalContext
 import { SliderButtonContext } from '../contexts/SliderButtonContext'
 import { SliderButton } from '../components/SliderButton'
 
-import styles from '../styles/pages/Home.module.css'
 import { GetStaticProps } from 'next'
 import { UpdateProductModal } from '../components/UpdateProductModal'
 
 import axios from 'axios'
 
-export default function Home({ transactions }) {
+import { HomeProps, TransactionData } from '@/types'
+
+import styles from '../styles/pages/Home.module.css'
+
+export default function Home({ transactions }: HomeProps) {
   const { formatAmount, retrieveData, incomes, expenses, total } = useContext(Transactions)
 
   const { colors } = useContext(SliderButtonContext)
 
   const { isModalOpen, toggleModal } = useContext(AddProductModalContext)
-  const { isUpdateModalOpen, toggleUpdateModal } = useContext(UpdateProductModalContext)
+  const { isUpdateModalOpen } = useContext(UpdateProductModalContext)
 
   const openAddProductModal = event => {
     window.addEventListener('click', ()=>{
@@ -72,7 +75,7 @@ export default function Home({ transactions }) {
 export const getStaticProps:GetStaticProps = async () => {
   const result = await axios.get('http://localhost:3000/api/transactions')
   const list = await result.data
-  const transactions = list.body.map(doc=>{
+  const transactions:TransactionData[] = list.body.map(doc=>{
     return {
       id: doc._id,
       description: doc.description,

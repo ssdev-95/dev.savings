@@ -1,32 +1,9 @@
-import React, {ReactNode, useState, useEffect, createContext} from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import {useCookies} from 'react-cookie'
 
 import Themes from '../styles/themes.json'
 
-interface SliderButtonProviderProps {
-    children: ReactNode;
-}
-
-interface SliderButtonContextData {
-    colors: ColorData;
-    toggleTheme: (params)=>void;
-}
-
-interface ColorData {
-    "someTexts": string;
-    "header": string;
-    "body": string;
-    "cards": string;
-    "cardsTotal": string;
-    "addButton": string;
-    "table": string;
-    "sliderBg": string;
-    "thumbPos": string;
-}
-
-interface ThemeData {
-    name: string;
-}
+import { SliderButtonContextData, SliderButtonProviderProps, ColorData } from '@/types'
 
 export const SliderButtonContext = createContext({} as SliderButtonContextData)
 

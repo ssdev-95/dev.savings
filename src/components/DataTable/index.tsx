@@ -2,9 +2,11 @@ import React, { useContext } from 'react'
 import { Transactions } from '../../contexts/TransactionsContext'
 import { UpdateProductModalContext } from '../../contexts/UpdateProductModalContext'
 
+import { DataTableProps } from '@/types'
+
 import styles from '../../styles/components/DataTable.module.css'
 
-export const DataTable = ({ transactions, text}) => {
+export const DataTable = ({ transactions, text}: DataTableProps) => {
     const { formatAmount, deleteProduct, formatDate } = useContext(Transactions)
     const {toggleUpdateModal, get} = useContext(UpdateProductModalContext)
 

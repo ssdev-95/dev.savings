@@ -1,22 +1,8 @@
-import {ReactNode, createContext, useState, useContext} from 'react'
+import { createContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import fetch from 'isomorphic-unfetch'
+import axios from 'axios'
 
-interface UpdateProductModalContextData {
-    isUpdateModalOpen: boolean;
-    mem: {
-        name: string,
-        value: number,
-        when: string
-    };
-    get: (val1:string, val2: number, val3:string)=>void
-    toggleUpdateModal: (id: string)=>void;
-    update: (params: any)=>void;
-}
-
-interface UpdateProductContextProviderProps {
-    children : ReactNode
-}
+import { UpdateProductContextProviderProps, UpdateProductModalContextData } from '@/types'
 
 export const UpdateProductModalContext = createContext({} as UpdateProductModalContextData)
 
@@ -42,16 +28,9 @@ export const UpdateProductContextProvider = ({children}: UpdateProductContextPro
             op: op,
             date: date
         }
+        const uri = `http://localhost:3000/api/transactions/${transactionId}`
         
-        const res = await fetch(`http://localhost:3000/api/transactions/${transactionId}`, {
-            method: 'PUT',
-            headers:{
-                'Access-Control-Allow-Origin' : '*',
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(updated)
-        })
+        const res = await axios.put(uri, updated)
 
         console.log(res)
 

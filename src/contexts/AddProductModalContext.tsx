@@ -2,15 +2,7 @@ import { createContext, ReactNode, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
-interface AddProductModalContextData {
-    submit: (data) => void;
-    toggleModal: () => void;
-    isModalOpen: boolean;
-}
-
-interface AddProductModalContextProviderProps {
-    children: ReactNode;
-}
+import { AddProductModalContextData, AddProductModalContextProviderProps } from '@/types'
 
 export const AddProductModalContext = createContext({} as AddProductModalContextData)
 
@@ -33,12 +25,7 @@ export const AddProductModalContextProvider = ({ children }: AddProductModalCont
             op: String(op)
         }
 
-        const res = await axios.post('http://localhost:3000/api/transactions', {
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            },
-            body: JSON.stringify(transaction)
-        })
+        const res = await axios.post('http://localhost:3000/api/transactions', transaction)
 
         console.log(res)
 

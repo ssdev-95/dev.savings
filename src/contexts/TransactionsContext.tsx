@@ -1,28 +1,8 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useRouter } from 'next/router'
-import fetch from 'isomorphic-unfetch'
+import axios from 'axios'
 
-interface TransactionData {
-    id: string;
-    description: string;
-    amount: number;
-    date: string;
-    op: string;
-}
-
-interface TransactionsProviderProps {
-    children: ReactNode;
-}
-
-interface TransactionsData {
-    incomes: number,
-    expenses: number,
-    total: number,
-    formatAmount: (amount: number, op: string) => string,
-    retrieveData: (data: TransactionData[]) => void
-    deleteProduct: (id: string) => void
-    formatDate: (date:string) => string
-}
+import { TransactionsData, TransactionData, TransactionsProviderProps } from '@/types'
 
 export const Transactions = createContext({} as TransactionsData)
 
@@ -59,15 +39,16 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
         })
     }
 
+    const config = {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            "Accept": "*",
+            "Content-Type": "*"
+        }
+    }
+
     const deleteProduct = async (id: String) => {
-        const res = await fetch(`http://localhost:3000/api/transactions/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                "Accept": "*",
-                "Content-Type": "*"
-            }
-        })
+        const res = await axios.delete(`http://localhost:3000/api/transactions/${id}`, config)
 
         console.log(res)
 
@@ -82,7 +63,8 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
             formatAmount,
             retrieveData,
             deleteProduct,
-            formatDate
+            formatDate,
+            config
         }}>
             {children}
         </Transactions.Provider>
