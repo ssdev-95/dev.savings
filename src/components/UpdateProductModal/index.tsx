@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import {useForm} from 'react-hook-form'
-import { UpdateProductModalContext } from '../../contexts/UpdateProductModalContext'
+import { UpdateProductModalContext } from '@/contexts/UpdateProductModalContext'
 
-import styles from '../../styles/components/AddProductModal.module.css'
+import styles from '@/styles/components/AddProductModal.module.css'
 
 export const UpdateProductModal = () => {
     const {register, handleSubmit} = useForm()

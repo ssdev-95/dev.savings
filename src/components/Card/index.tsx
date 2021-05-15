@@ -2,7 +2,7 @@ import React from 'react'
 
 import { CardProps } from '@/types'
 
-import styles from '../../styles/components/Cards.module.css'
+import styles from '@/styles/components/Cards.module.css'
 
 export const Card = ({ bg, cname, dispValue, text }: CardProps) => {
     return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react'
 import {useCookies} from 'react-cookie'
 
-import Themes from '../styles/themes.json'
+import Themes from '@/styles/themes.json'
 
 import { SliderButtonContextData, SliderButtonProviderProps, ColorData } from '@/types'
 

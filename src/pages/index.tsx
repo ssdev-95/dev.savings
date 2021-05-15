@@ -1,22 +1,23 @@
 import React, { useContext, useEffect } from 'react'
-import { Card } from '../components/Card'
-import { DataTable } from '../components/DataTable'
-import { AddProductModal } from '../components/AddProductModal'
 
-import { Transactions } from '../contexts/TransactionsContext'
-import { AddProductModalContext } from '../contexts/AddProductModalContext'
-import { UpdateProductModalContext } from '../contexts/UpdateProductModalContext'
-import { SliderButtonContext } from '../contexts/SliderButtonContext'
-import { SliderButton } from '../components/SliderButton'
+import { Card } from '@/components/Card'
+import { DataTable } from '@/components/DataTable'
+import { AddProductModal } from '@/components/AddProductModal'
+
+import { Transactions } from '@/contexts/TransactionsContext'
+import { AddProductModalContext } from '@/contexts/AddProductModalContext'
+import { UpdateProductModalContext } from '@/contexts/UpdateProductModalContext'
+import { SliderButtonContext } from '@/contexts/SliderButtonContext'
+import { SliderButton } from '@/components/SliderButton'
 
 import { GetStaticProps } from 'next'
-import { UpdateProductModal } from '../components/UpdateProductModal'
+import { UpdateProductModal } from '@/components/UpdateProductModal'
 
 import axios from 'axios'
 
 import { HomeProps, TransactionData } from '@/types'
 
-import styles from '../styles/pages/Home.module.css'
+import styles from '@/styles/pages/Home.module.css'
 
 export default function Home({ transactions }: HomeProps) {
   const { formatAmount, retrieveData, incomes, expenses, total } = useContext(Transactions)

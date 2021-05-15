@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 
-import {SliderButtonContext} from '../../contexts/SliderButtonContext'
+import {SliderButtonContext} from '@/contexts/SliderButtonContext'
 
-import styles from '../../styles/components/SliderButton.module.css'
+import styles from '@/styles/components/SliderButton.module.css'
 
 export const SliderButton = () => {
     const {colors, toggleTheme} = useContext(SliderButtonContext)
