@@ -13,8 +13,6 @@ import { SliderButton } from '@/components/SliderButton'
 import { GetStaticProps } from 'next'
 import { UpdateProductModal } from '@/components/UpdateProductModal'
 
-import axios from 'axios'
-
 import { HomeProps } from '@/types'
 
 import styles from '@/styles/pages/Home.module.css'
