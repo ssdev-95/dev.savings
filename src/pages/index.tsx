@@ -4,7 +4,7 @@ import { Card } from '@/components/Card'
 import { DataTable } from '@/components/DataTable'
 import { AddProductModal } from '@/components/AddProductModal'
 
-import { Transactions } from '@/contexts/TransactionsContext'
+import { Transactions,readTransactions } from '@/contexts/TransactionsContext'
 import { AddProductModalContext } from '@/contexts/AddProductModalContext'
 import { UpdateProductModalContext } from '@/contexts/UpdateProductModalContext'
 import { SliderButtonContext } from '@/contexts/SliderButtonContext'
@@ -15,7 +15,7 @@ import { UpdateProductModal } from '@/components/UpdateProductModal'
 
 import axios from 'axios'
 
-import { HomeProps, TransactionData } from '@/types'
+import { HomeProps } from '@/types'
 
 import styles from '@/styles/pages/Home.module.css'
 
@@ -75,17 +75,11 @@ export default function Home({ transactions }: HomeProps) {
 }
 
 export const getStaticProps:GetStaticProps = async () => {
-  const result = await axios.get('http://localhost:3000/api/transactions')
-  const list = await result.data
-  const transactions:TransactionData[] = list.body.map(doc=>{
-    return {
-      id: doc._id,
-      description: doc.description,
-      op: doc.op,
-      amount: doc.amount,
-      date: doc.date
-    }
-  })
+  const port = process.env.PORT
+  const uri = `http://localhost:${port}/api/transactions`
+
+  const transactions = await readTransactions(uri)
+  console.log(port)
 
   return {
     props: {

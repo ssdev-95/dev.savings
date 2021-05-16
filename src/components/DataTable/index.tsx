@@ -7,7 +7,7 @@ import { DataTableProps } from '@/types'
 import styles from '@/styles/components/DataTable.module.css'
 
 export const DataTable = ({ transactions, text}: DataTableProps) => {
-    const { formatAmount, deleteProduct, formatDate } = useContext(Transactions)
+    const { formatAmount, deleteTransaction, formatDate } = useContext(Transactions)
     const {toggleUpdateModal, get} = useContext(UpdateProductModalContext)
 
     const chils = transactions.length>0&&(
@@ -33,7 +33,7 @@ export const DataTable = ({ transactions, text}: DataTableProps) => {
                             toggleUpdateModal(id)
                             get(description, amount, date)
                         }}>{formatDate(date)}</td>
-                        <td onClick={()=>deleteProduct(id)}>
+                        <td onClick={()=>deleteTransaction(id)}>
                             <img src="icons/minus.svg" />
                         </td>
                     </tr>)

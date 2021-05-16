@@ -9,7 +9,7 @@ export interface RequestConfigs {
 }
 
 export interface TransactionData {
-    id: string;
+    id?: string;
     description: string;
     amount: number;
     date: string;
@@ -27,7 +27,9 @@ export interface TransactionsData {
     formatAmount: (amount: number, op: string) => string,
     refresh: () => void,
     retrieveData: (data: TransactionData[]) => void
-    deleteProduct: (id: string) => void
+    createTransaction: (transaction: TransactionData)=>Promise<void>
+    updateTransaction: (id:string,transaction: TransactionData)=>Promise<void>
+    deleteTransaction: (id: string) => void
     formatDate: (date:string) => string
     config: RequestConfigs
 }

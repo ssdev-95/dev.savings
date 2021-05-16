@@ -52,10 +52,22 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
         }
     }
 
-    const deleteProduct = async (id: String) => {
-        const res = await axios.delete(`http://localhost:3000/api/transactions/${id}`, config)
 
-        console.log(res)
+    const createTransaction = async (transaction: TransactionData) => {
+        const port = process.env.PORT
+        await axios.post(`http://localhost:${port}/api/transactions`, transaction)
+    }
+
+    const updateTransaction = async (id:string, transaction: TransactionData) => {
+        const uri = `http://localhost:${process.env.PORT}/api/transactions/${id}`
+
+        await axios.put(uri, transaction)
+    }
+
+    const deleteTransaction = async (id: String) => {
+        const uri = `http://localhost:${process.env.PORT}/api/transactions/${id}`
+        
+        await axios.delete(uri, config)
 
         router.push('/')
     }
@@ -68,11 +80,31 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
             formatAmount,
             refresh,
             retrieveData,
-            deleteProduct,
+            createTransaction,
+            updateTransaction,
+            deleteTransaction,
             formatDate,
             config
         }}>
             {children}
         </Transactions.Provider>
     )
+}
+
+export const readTransactions = async (uri:string) => {
+    const res = await axios.get(uri)
+
+    const list = await res.data
+
+    const transactions:TransactionData[] = list.body.map((doc:any)=>{
+        return {
+          id: doc._id,
+          description: doc.description,
+          op: doc.op,
+          amount: doc.amount,
+          date: doc.date
+        }
+    })
+
+    return transactions
 }

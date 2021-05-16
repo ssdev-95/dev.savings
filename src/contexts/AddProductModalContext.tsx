@@ -1,6 +1,7 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
+
+import { Transactions } from '@/contexts/TransactionsContext'
 
 import { AddProductModalContextData, AddProductModalContextProviderProps } from '@/types'
 
@@ -9,6 +10,7 @@ export const AddProductModalContext = createContext({} as AddProductModalContext
 export const AddProductModalContextProvider = ({ children }: AddProductModalContextProviderProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const router = useRouter()
+    const { createTransaction } = useContext(Transactions)
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen)
@@ -25,9 +27,7 @@ export const AddProductModalContextProvider = ({ children }: AddProductModalCont
             date: String(date)
         }
 
-        const res = await axios.post('http://localhost:3000/api/transactions', transaction)
-
-        console.log(res)
+        await createTransaction(transaction)
 
         router.push('/')
 

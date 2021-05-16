@@ -53,3 +53,4 @@ _bckup/
 #remove for now
 #add later
 /scripts/transaction.js
+next.config.js

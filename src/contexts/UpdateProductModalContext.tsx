@@ -1,6 +1,8 @@
-import { createContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+
+import { Transactions } from '@/contexts/TransactionsContext'
 
 import { UpdateProductContextProviderProps, UpdateProductModalContextData } from '@/types'
 
@@ -11,6 +13,8 @@ export const UpdateProductContextProvider = ({children}: UpdateProductContextPro
     const [transactionId, setTransactionId] = useState('')
     const [mem, setMem] = useState({name:'', value:0, when:''})
     const router = useRouter()
+
+    const { updateTransaction } = useContext(Transactions)
 
     const toggleUpdateModal = (_id) => {
         window
@@ -28,9 +32,7 @@ export const UpdateProductContextProvider = ({children}: UpdateProductContextPro
             op: op,
             date: date
         }
-        const uri = `http://localhost:3000/api/transactions/${transactionId}`
-        
-        const res = await axios.put(uri, updated)
+        updateTransaction(transactionId, updated)
 
         toggleUpdateModal('')
         router.push('/')
