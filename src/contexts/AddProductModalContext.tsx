@@ -21,8 +21,8 @@ export const AddProductModalContextProvider = ({ children }: AddProductModalCont
         const transaction = {
             description: String(description),
             amount: Number(amount * (-100)),
-            date: String(date),
-            op: String(op)
+            op: String(op),
+            date: String(date)
         }
 
         const res = await axios.post('http://localhost:3000/api/transactions', transaction)

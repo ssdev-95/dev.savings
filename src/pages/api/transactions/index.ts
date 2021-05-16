@@ -4,13 +4,7 @@ import Transaction from '@api/transaction'
 DBConnect()
 
 export default async (req, res) => {
-    const { method, body } = req
-
-    const config = {
-        "Headers":{
-            "Access-Control-Allow-Origin": "http://localhost:3000/"
-        }
-    }
+    const { method } = req
 
     switch(method) {
         case 'GET': 
@@ -28,15 +22,17 @@ export default async (req, res) => {
             try {
                 const newData = await Transaction.create(req.body)
 
-                if(!newData) return res.status(400).json({success:false, body: 'Couldn`t insert data..'})
+                // if(!newData) {
+                //     return res.status(400).json({success:false, body: 'Couldn`t insert data..'})
+                // }
                 
                 return res.status(200).json({success:true, body: 'Successfully inserted..'})
             } catch(err) {
-                res.status(400).json({success:false, body: 'Could not insert data..'})
+                return res.status(400).json({success:false, body: 'Could not insert data..'})
             }
             break
         default:
-            res.status(404).json({success:false, body: 'Page not found..'})
+            return res.status(404).json({success:false, body: 'Page not found..'})
             break
     }
 }
