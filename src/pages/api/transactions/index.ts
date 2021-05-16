@@ -28,6 +28,7 @@ export default async (req, res) => {
                 
                 return res.status(200).json({success:true, body: 'Successfully inserted..'})
             } catch(err) {
+                console.log(err)
                 return res.status(400).json({success:false, body: 'Could not insert data..'})
             }
             break
