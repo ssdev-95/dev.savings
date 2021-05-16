@@ -6,6 +6,12 @@ DBConnect()
 export default async (req, res) => {
     const { method, body } = req
 
+    const config = {
+        "Headers":{
+            "Access-Control-Allow-Origin": "http://localhost:3000/"
+        }
+    }
+
     switch(method) {
         case 'GET': 
             try {
@@ -20,11 +26,11 @@ export default async (req, res) => {
             break
         case 'POST':
             try {
-                const newData = await Transaction.create(body)
+                const newData = await Transaction.create(req.body)
 
-                if(!newData) res.status(400).json({success:false, body: 'Couldn`t insert data..'})
+                if(!newData) return res.status(400).json({success:false, body: 'Couldn`t insert data..'})
                 
-                res.status(200).json({success:true, body: 'Successfully inserted..'})
+                return res.status(200).json({success:true, body: 'Successfully inserted..'})
             } catch(err) {
                 res.status(400).json({success:false, body: 'Could not insert data..'})
             }

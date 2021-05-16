@@ -32,8 +32,6 @@ export const UpdateProductContextProvider = ({children}: UpdateProductContextPro
         
         const res = await axios.put(uri, updated)
 
-        console.log(res)
-
         toggleUpdateModal('')
         router.push('/')
     }

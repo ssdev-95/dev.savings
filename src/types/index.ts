@@ -25,6 +25,7 @@ export interface TransactionsData {
     expenses: number,
     total: number,
     formatAmount: (amount: number, op: string) => string,
+    refresh: () => void,
     retrieveData: (data: TransactionData[]) => void
     deleteProduct: (id: string) => void
     formatDate: (date:string) => string

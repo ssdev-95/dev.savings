@@ -9,6 +9,11 @@ export const Transactions = createContext({} as TransactionsData)
 export const TransactionsProvider = ({ children }: TransactionsProviderProps) => {
     const router = useRouter()
 
+    const refresh = () => {
+        setExpenses(0)
+        setIncomes(0)
+    }
+
     const formatDate = (date:string) => {
         const formatedDate = date.split('-').reverse().join('/')
 
@@ -61,6 +66,7 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
             expenses,
             total,
             formatAmount,
+            refresh,
             retrieveData,
             deleteProduct,
             formatDate,

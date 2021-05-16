@@ -7,6 +7,6 @@ export async function DBConnect() {
     return Mongoose.connect(uri, {
         useNewUrlParser:true,
         useUnifiedTopology: true,
-        useFindAndModify: true
+        useFindAndModify: false
     })
 }

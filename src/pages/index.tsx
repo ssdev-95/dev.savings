@@ -20,7 +20,7 @@ import { HomeProps, TransactionData } from '@/types'
 import styles from '@/styles/pages/Home.module.css'
 
 export default function Home({ transactions }: HomeProps) {
-  const { formatAmount, retrieveData, incomes, expenses, total } = useContext(Transactions)
+  const { formatAmount, refresh, retrieveData, incomes, expenses, total } = useContext(Transactions)
 
   const { colors } = useContext(SliderButtonContext)
 
@@ -35,6 +35,7 @@ export default function Home({ transactions }: HomeProps) {
   }
 
   useEffect(()=>{
+    refresh()
     retrieveData(transactions)
   }, [])
 
@@ -66,7 +67,7 @@ export default function Home({ transactions }: HomeProps) {
             bg={colors.cardsTotal} 
             text={'#fff'} 
             cname='totals' 
-            dispValue={`R$ ${String(total/100).replace('.', ',')}`}  />
+            dispValue={`R$ ${String((total/100).toFixed(2)).replace('.', ',')}`}  />
         <DataTable text={colors.table} transactions={transactions} />
       </main>
     </div>
