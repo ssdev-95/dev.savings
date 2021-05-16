@@ -86,7 +86,7 @@ export interface ThemeData {
 }
 
 export interface HomeProps {
-    transactions: TransactionData[]
+    transactions?: TransactionData[]
 }
 
 export interface DataTableProps {
