@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
     <AddProductModalContextProvider>
     <UpdateProductContextProvider>
       <Head>
-        <title>Dev.finance$</title>
+        <title>Dev.finance$ | Home</title>
       </Head>
       <Component {...pageProps} />
       </UpdateProductContextProvider>
