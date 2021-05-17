@@ -69,7 +69,7 @@ export default function Home({ transactions }: HomeProps) {
             cname='totals' 
             op={total>0?"income":"expense"}
             dispValue={total}  />
-        <DataTable text={colors.table} transactions={transactions} />
+        <DataTable text={colors.table} />
       </main>
     </div>
   )

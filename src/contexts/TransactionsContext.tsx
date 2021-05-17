@@ -31,12 +31,22 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
 
     const [total, setTotal] = useState(0)
 
+    const [transactions, setTransactions] = useState<TransactionData[]>([{
+        id: '',
+        description: '',
+        amount: 0,
+        op: '',
+        date: ''
+    }])
+
 
     useEffect(() => {
         setTotal(incomes - expenses)
     }, [incomes, expenses])
 
     const retrieveData = (data: TransactionData[]) => {
+        setTransactions(data)
+        
         data.forEach(doc => {
             doc.op === 'expense' ?
             setExpenses(expenses => expenses + doc.amount) :
@@ -74,6 +84,7 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
 
     return (
         <Transactions.Provider value={{
+            transactions,
             incomes,
             expenses,
             total,

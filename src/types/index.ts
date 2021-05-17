@@ -21,6 +21,7 @@ export interface TransactionsProviderProps {
 }
 
 export interface TransactionsData {
+    transactions: TransactionData[],
     incomes: number,
     expenses: number,
     total: number,
@@ -90,7 +91,6 @@ export interface HomeProps {
 }
 
 export interface DataTableProps {
-    transactions: TransactionData[]
     text: string
 }
 

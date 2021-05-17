@@ -6,8 +6,8 @@ import { DataTableProps } from '@/types'
 
 import styles from '@/styles/components/DataTable.module.css'
 
-export const DataTable = ({ transactions, text}: DataTableProps) => {
-    const { formatAmount, deleteTransaction, formatDate } = useContext(Transactions)
+export const DataTable = ({ text }: DataTableProps) => {
+    const { formatAmount, deleteTransaction, formatDate, transactions } = useContext(Transactions)
     const {toggleUpdateModal, get} = useContext(UpdateProductModalContext)
 
     const chils = transactions.length>0&&(

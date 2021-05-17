@@ -1,5 +1,5 @@
-import { DBConnect } from '@api/dbController'
-import Transaction from '@api/transaction'
+import { DBConnect } from '@/pages/api/dbController'
+import Transaction from '@/pages/api/transaction'
 
 DBConnect()
 
