@@ -29,7 +29,7 @@
 >> ## Features
 >>
 >>> - [x] Add transactions, such as book aquire, a freelance receipt, etc.
->>> - [x] Save transactions to a database, such as firebase.
+>>> - [x] Save transactions to a database, such as MongoDB.
 >>> - [x] Remove transactions.
 >>> - [x] Edit a transaction.
 >>> - [x] Select between three themes, <i>Normal, Dark and Rocket</i>..
@@ -38,8 +38,11 @@
 >> ## Tools Used
 >>
 >> - [Visual Studio Code&trade;](https://code.visualstudio.com/)
->> - [Firebase&trade;](https://firebase.google.com)
+>> - [MongoDB&trade;](https://mongdb.com)
 >> - [Google Chrome&trade;](https://www.google.com/intl/pt-BR/chrome/)
+>> - [Mongoose&trade;](https://mongosejs.com)
+>> - [GoogleChrome&trade](https://google.com/chrome)
+>> - [OperaStable&trade](https://opera.com)
 
 ---
 
@@ -58,7 +61,17 @@
 >> ```bash
 >> git clone https://github.com/xSallus/dev.finances.git
 >>```
->>> Then setup a Database on firebase is needed and hot to do it is out of this scope.
+>>> Then setup a MongoDB cluster, a collection and a database. How to do it is out of this scope.
+>>> Create a next.config,js file with the following:
+>> ```bash
+>> module.exports = {
+>>   env: {
+>>      MONGO_URI: <your_mongodb_connection_uri>,
+>>      PORT: <the_port_used_for_localhost_connection>
+>>   }
+>> }
+>> #PORT is commonoly '3000' under development
+>> ```
 >>> Start node local server by running:
 >>```bash
 >> yarn dev
@@ -69,7 +82,7 @@
 
 >> ## Known Bugs
 >>
->> - When transiting data between client database, data may not render properly on components.
+>> - When updating, deleting or adding new transactions, cards may not update values before full reload
 
 ---
 
