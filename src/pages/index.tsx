@@ -18,7 +18,7 @@ import { HomeProps } from '@/types'
 import styles from '@/styles/pages/Home.module.css'
 
 export default function Home({ transactions }: HomeProps) {
-  const { formatAmount, refresh, retrieveData, incomes, expenses, total } = useContext(Transactions)
+  const { refresh, retrieveData, incomes, expenses, total } = useContext(Transactions)
 
   const { colors } = useContext(SliderButtonContext)
 
@@ -35,7 +35,7 @@ export default function Home({ transactions }: HomeProps) {
   useEffect(()=>{
     refresh()
     retrieveData(transactions)
-  }, [])
+  }, [transactions])
 
   return (
     <div className={styles.container} style={{background: colors.body}}>
@@ -55,17 +55,20 @@ export default function Home({ transactions }: HomeProps) {
             bg={colors.cards} 
             text={colors.someTexts} 
             cname='incomes' 
-            dispValue={formatAmount(incomes, 'incomes')} />
+            op="income"
+            dispValue={incomes} />
         <Card 
             bg={colors.cards} 
             text={colors.someTexts} 
             cname='expenses' 
-            dispValue={formatAmount(expenses, 'expenses')}  />
+            op="expense"
+            dispValue={expenses}  />
         <Card 
             bg={colors.cardsTotal} 
             text={'#fff'} 
             cname='totals' 
-            dispValue={`R$ ${String((total/100).toFixed(2)).replace('.', ',')}`}  />
+            op={total>0?"income":"expense"}
+            dispValue={total}  />
         <DataTable text={colors.table} transactions={transactions} />
       </main>
     </div>
@@ -77,7 +80,6 @@ export const getStaticProps:GetStaticProps = async () => {
   const uri = `http://localhost:${port}/api/transactions`
 
   const transactions = await readTransactions(uri)
-  console.log(port)
 
   return {
     props: {

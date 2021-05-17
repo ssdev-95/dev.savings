@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 
 import { Transactions } from '@/contexts/TransactionsContext'
 
@@ -28,7 +27,7 @@ export const UpdateProductContextProvider = ({children}: UpdateProductContextPro
         const op = amount>=0?'income':'expense'
         const updated = {
             description: description,
-            amount: amount*(-100),
+            amount: amount<0?Number(amount*(-100)):Number(amount),
             op: op,
             date: date
         }

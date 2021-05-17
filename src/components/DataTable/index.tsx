@@ -27,7 +27,7 @@ export const DataTable = ({ transactions, text}: DataTableProps) => {
                           onClick={()=> {
                             toggleUpdateModal(id)
                             get(description, amount, date)
-                        }}>{formatAmount(amount, op)}</td>
+                        }}>{formatAmount(amount)}</td>
                         <td
                           onClick={()=> {
                             toggleUpdateModal(id)

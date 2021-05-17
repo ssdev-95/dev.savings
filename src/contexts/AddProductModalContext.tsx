@@ -22,7 +22,7 @@ export const AddProductModalContextProvider = ({ children }: AddProductModalCont
 
         const transaction = {
             description: String(description),
-            amount: Number(amount * (-100)),
+            amount: amount<0?Number(amount * (-100)):Number(amount),
             op: String(op),
             date: String(date)
         }

@@ -20,10 +20,8 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
         return formatedDate
     }
 
-    const formatAmount = (value: number, op: string) => {
-        const signal = op === 'expense' ? '- R$ ' : 'R$ '
-        const numbered = Number(value / 100)
-        let amount = signal + String(numbered.toFixed(2))
+    const formatAmount = (value: number) => {
+        let amount = `R$ ${Number(value / 100).toFixed(2)}`
         return amount.replace('.', ',')
     }
 
@@ -40,7 +38,9 @@ export const TransactionsProvider = ({ children }: TransactionsProviderProps) =>
 
     const retrieveData = (data: TransactionData[]) => {
         data.forEach(doc => {
-            doc.op === 'expense' ? setExpenses(expenses + doc.amount) : setIncomes(incomes + doc.amount)
+            doc.op === 'expense' ?
+            setExpenses(expenses => expenses + doc.amount) :
+            setIncomes(incomes => incomes + doc.amount)
         })
     }
 

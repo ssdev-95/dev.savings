@@ -24,7 +24,7 @@ export interface TransactionsData {
     incomes: number,
     expenses: number,
     total: number,
-    formatAmount: (amount: number, op: string) => string,
+    formatAmount: (amount: number) => string,
     refresh: () => void,
     retrieveData: (data: TransactionData[]) => void
     createTransaction: (transaction: TransactionData)=>Promise<void>
@@ -97,6 +97,7 @@ export interface DataTableProps {
 export interface CardProps {
     bg: string
     cname: string
-    dispValue: string
+    dispValue: number
     text: string
+    op: string
 }
