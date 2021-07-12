@@ -1,7 +1,18 @@
 import { ReactNode } from 'react'
 
+export interface CardProps {
+    title: string;
+    value: number;
+}
+
 export interface ProviderProps {
     children: ReactNode;
+}
+
+export interface NavigationData {
+    component: number;
+    goForward: ()=>void;
+    goBackward: ()=>void;
 }
 
 export interface TransactionData {

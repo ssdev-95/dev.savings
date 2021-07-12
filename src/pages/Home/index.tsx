@@ -4,9 +4,8 @@ import { Button } from '@material-ui/core'
 
 import { DoubleArrow } from '@material-ui/icons'
 import Logo from 'src/icons/logo.svg'
-import Total from 'src/icons/total.svg'
 
-import { Home, Loading } from './styles'
+import { Home } from './styles'
 
 function App() {
   const history = useHistory()
@@ -20,9 +19,6 @@ function App() {
         <span>Start saving today</span>
         <DoubleArrow />
       </Button>
-      <Loading>
-        <img src={Total} alt="Loading.." />
-      </Loading>
     </Home>
   );
 }

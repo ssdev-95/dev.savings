@@ -1,6 +1,5 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import colors from 'src/colors.json'
-import { bounce } from 'react-animations'
 
 const { innerWidth: width } = window
 
@@ -68,17 +67,4 @@ const { innerWidth: width } = window
     }
 `
 
-const Loading = styled.div`
-    width: fit-content;
-    height: fit-content;
-    animation: 2s ${keyframes`${bounce}`} infinite;
-    position: absolute;
-    bottom: 10rem;
-    right: ${width>1024?'10rem':'40vw'};
-
-    img {
-        filter: sepia(4) hue-rotate(90deg) saturate(100) brightness(.69);
-    }
-`
-
-export { Home, Loading }
+export { Home }

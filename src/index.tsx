@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { NavigationProvider } from 'src/contexts/Navigation'
 
 import { App } from 'src/pages/Home'
 import { Dash }from 'src/pages/Dashboard'
@@ -15,7 +16,9 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={App} />
-        <Route path="/dashboard" component={Dash} />
+        <NavigationProvider>
+          <Route path="/dashboard" component={Dash} />
+        </NavigationProvider>
       </Switch>
     </BrowserRouter>
   </React.StrictMode>,
