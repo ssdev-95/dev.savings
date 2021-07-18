@@ -1,0 +1,8 @@
+{
+  "name": "devsavings",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:xSallus/dev.savings.git",
+  "author": "salomao souza <souza95salomao@gmail.com>",
+  "license": "MIT"
+}
