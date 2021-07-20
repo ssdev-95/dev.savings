@@ -1,5 +1,7 @@
 import { Request, Response, Router } from 'express'
 
+const router = Router()
+
 import { AddTransactionController } from './controllers/AddTransactionController'
 import { DeleteTransactionController } from './controllers/DeleteTransactionController'
 import { UpdateTransactionController } from './controllers/UpdateTransactionController'
@@ -13,8 +15,6 @@ const retrieveTransactionsController = new RetrieveTransactionsController()
 async function handle404Redirect(req:Request, res:Response) {
     return res.json({ msg: 'Feature not found' })
 }
-
-const router = Router()
 
 router.get('/users/:id/transactions/:slug', handle404Redirect)
 
