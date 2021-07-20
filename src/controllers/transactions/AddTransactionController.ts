@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { Transaction } from '../@types'
-import { AddTransactionService } from '../services/AddTransactionService'
+import { Transaction } from '../../@types'
+import { AddTransactionService } from '../../services/transactions/AddTransactionService'
 
 class AddTransactionController  {
     async handle(req:Request, res:Response) {

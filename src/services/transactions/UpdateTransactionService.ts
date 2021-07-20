@@ -1,5 +1,5 @@
-import { database } from '../db/firebase'
-import { Transaction } from '../@types'
+import { database } from '../../db/firebase'
+import { Transaction } from '../../@types'
 
 class UpdateTransactionService {
 

@@ -1,6 +1,6 @@
 import { Request, Response} from 'express'
-import { Transaction } from '../@types'
-import {UpdateTransactionService } from '../services/UpdateTransactionService'
+import { Transaction } from '../../@types'
+import {UpdateTransactionService } from '../../services/transactions/UpdateTransactionService'
 
 class UpdateTransactionController {
 

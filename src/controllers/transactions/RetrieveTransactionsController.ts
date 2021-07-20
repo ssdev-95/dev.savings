@@ -1,5 +1,5 @@
 import { Request, Response} from 'express'
-import {RetrieveTransactionsService } from '../services/RetrieveTransactionsService'
+import {RetrieveTransactionsService } from '../../services/transactions/RetrieveTransactionsService'
 
 class RetrieveTransactionsController {
 

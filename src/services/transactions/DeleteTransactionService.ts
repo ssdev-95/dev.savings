@@ -1,4 +1,4 @@
-import { database } from '../db/firebase'
+import { database } from '../../db/firebase'
 class DeleteTransactionService {
     async execute(transaction_id: string) {
         try {

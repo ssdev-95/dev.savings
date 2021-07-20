@@ -1,5 +1,5 @@
-import { Transaction } from '../@types'
-import { database } from '../db/firebase'
+import { Transaction } from '../../@types'
+import { database } from '../../db/firebase'
 
 class RetrieveTransactionsService {
     async execute() {

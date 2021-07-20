@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { DeleteTransactionService } from '../services/DeleteTransactionService'
+import { DeleteTransactionService } from '../../services/transactions/DeleteTransactionService'
 
 class DeleteTransactionController  {
     async handle(req:Request, res:Response) {
