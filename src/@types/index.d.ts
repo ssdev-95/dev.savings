@@ -6,3 +6,8 @@ export interface Transaction {
     when: string;
     owner?: string;
 }
+
+export interface User {
+    id: string;
+    name: string;
+}
