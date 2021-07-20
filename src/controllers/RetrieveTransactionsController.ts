@@ -3,7 +3,13 @@ import {RetrieveTransactionsService } from '../services/RetrieveTransactionsServ
 
 class RetrieveTransactionsController {
 
-    async handle(req:Request, res:Response) {}
+    async handle(req:Request, res:Response) {
+        const retrieveTransactionsService = new RetrieveTransactionsService()
+
+        const results = await retrieveTransactionsService.execute()
+
+        return res.json({ transactions: results })
+    }
 }
 
 export { RetrieveTransactionsController }
