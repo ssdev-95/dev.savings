@@ -7,11 +7,11 @@ require('dotenv').config()
 
 const port = Number(process.env.NODE_APP_PORT) 
 
-const app = express()
+const server = express()
 
-app.use(express.json())
-app.use(router)
-app.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
+server.use(express.json())
+server.use(router)
+server.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
     if(err instanceof Error) {
         return res.status(400).json({ err: err.message })
     }
@@ -19,6 +19,6 @@ app.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
     return res.status(500).json({ err: 'Internal server error!' })
 })
 
-app.listen(port, ()=>console.log(`Running at PORT: ${port}`))
+server.listen(port, ()=>console.log(`Running at PORT: ${port}`))
 
-export default app
+export default server
