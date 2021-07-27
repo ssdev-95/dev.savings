@@ -1,1 +1,69 @@
 @charset "UTF-8";
+
+.home {
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        h2 {
+            font-size: 4.59rem;
+            color: var(--blue);
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: var(--gray);
+        }
+    }
+
+    img {
+        height: 5rem;
+        width: auto;
+
+        padding: 0;
+    }
+
+    button {
+        background: var(--green);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        padding: 2px 4px;
+
+        span, svg {
+            font-size: 1.35rem;
+            font-weight: 500;
+        }
+    }
+
+    @media(min-width: 1024px) {
+        padding: 5rem 2rem;
+        align-items: flex-start;
+        justify-content: space-between;
+        text-align: left;
+
+        background-image: url('../../icons/coin.png');
+        background-repeat: no-repeat;
+        background-position: 90% 50%;
+
+        section {
+            gap: .5rem;
+    
+            h2 {
+                font-size: 2.89rem;
+            }
+        }
+    }
+}
