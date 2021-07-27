@@ -3,7 +3,9 @@ import styles from './styles.module.scss'
 function Dash() {
 
     return (
-        <div></div>
+        <main className={styles.dash}>
+            <span>Dashboard</span>
+        </main>
     )
 }
 
