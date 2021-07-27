@@ -3,7 +3,9 @@ import styles from './styles.module.scss'
 function LoginPage() {
 
     return (
-        <div>Login page</div>
+        <main className={styles.login}>
+            <span>Login page</span>
+        </main>
     )
 }
 
