@@ -26,3 +26,19 @@ html, body {
 html, body, button, a, span, p, h1, h2, h3, h4 {
   font-family: "Inter", sans-serif;
 }
+
+button {
+  border-radius: 10px;
+  color:  var(--white);
+  border: none;
+
+  width: 18rem;
+  height: 3rem;
+
+  cursor: pointer;
+  transition: all .2 ease;
+
+  &:hover {
+    filter: brightness(.89);
+  }
+}
