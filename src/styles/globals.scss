@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+:root {
+    --green: #49aa26;
+    --darkgreen: #2d4a22;
+    --gray: #969cb2;
+    --white: #ffffff;
+    --red: #e92929;
+    --blue: #363f5f;
+    --black: #rgba(0,0,0,0.68);
+    --light-gray: #f0f0f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  background: va(--light-gray);
+}
+
+html, body, button, a, span, p, h1, h2, h3, h4 {
+  font-family: "Inter", sans-serif;
+}
