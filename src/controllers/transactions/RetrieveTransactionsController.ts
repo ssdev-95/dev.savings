@@ -4,9 +4,10 @@ import {RetrieveTransactionsService } from '../../services/transactions/Retrieve
 class RetrieveTransactionsController {
 
     async handle(req:Request, res:Response) {
+        const token = req.headers.authorization
         const retrieveTransactionsService = new RetrieveTransactionsService()
 
-        const results = await retrieveTransactionsService.execute()
+        const results = await retrieveTransactionsService.execute(token)
 
         return res.json({ transactions: results })
     }

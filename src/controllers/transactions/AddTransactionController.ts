@@ -5,7 +5,7 @@ import { AddTransactionService } from '../../services/transactions/AddTransactio
 class AddTransactionController  {
     async handle(req:Request, res:Response) {
         const { description, amount, when, category } = req.body as Transaction
-        const id = req.params['id']
+        const token = req.headers.authorization
 
         const addTransactionService = new AddTransactionService()
 
@@ -13,9 +13,8 @@ class AddTransactionController  {
             description: description,
             amount: amount,
             category: category,
-            when: when,
-            owner: id
-        })
+            when: when
+        }, token)
 
         return res.json({ transaction: record })
     }

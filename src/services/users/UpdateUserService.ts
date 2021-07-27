@@ -1,18 +1,24 @@
 import { decode } from 'jsonwebtoken'
-// import { database } from "../../db/firebase"
+import { User, UserToken } from '../../@types'
+import { database } from "../../db/firebase"
 
 class UpdateUserService {
 
     async execute(token:string, name: string) {
-        const user = decode(token)
+        const { id } = decode(token) as UserToken
 
-        // await database.collection('users').doc(id).set({
-        //     name: name
-        // })
-
-        if(!user) {
+        if(id.trim()==='') {
             throw new Error('Invalid token')
         }
+
+        await database.collection('users').doc(id).set({
+            name: name
+        })
+
+        const user = {
+            id: id,
+            name: name
+        } as User
 
         return user
     }

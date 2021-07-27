@@ -11,3 +11,10 @@ export interface User {
     id: string;
     name: string;
 }
+
+export interface UserToken {
+    id: string;
+    name: string;
+    exp: number;
+    iat: number;
+}

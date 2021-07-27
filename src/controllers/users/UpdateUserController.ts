@@ -11,12 +11,9 @@ class UpdateUserController {
     
             const user = await updateUserService.execute(token, name)
     
-            console.log(user)
-    
-            return res.status(200).json({ status: 'ok' })
+            return res.status(200).json({ updatedUser: user })
         } catch(err) {
-            console.log(err)
-            res.status(500).json({ status: 'Unauthorized' })
+            return res.status(500).json({ status: 'Unauthorized' })
         }
     }
 }

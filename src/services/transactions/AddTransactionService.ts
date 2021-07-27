@@ -1,15 +1,18 @@
+import { decode } from 'jsonwebtoken'
 import { database } from '../../db/firebase'
-import { Transaction } from '../../@types'
+import { Transaction, UserToken } from '../../@types'
 
 class AddTransactionService {
 
-    async execute({description, amount, when, owner, category }: Transaction) {
+    async execute({description, amount, when, category }: Transaction, token:string) {
+        const { id } = decode(token) as UserToken
+
         const transit = {
             description: description,
             amount: amount,
             when: when,
-            owner: owner,
-            category: category
+            category: category,
+            owner: id
         }
 
         const result = await database.collection('transactions').add(transit)
@@ -20,8 +23,7 @@ class AddTransactionService {
             description: record.data().description,
             amount: record.data().amount,
             category: record.data().category,
-            when: record.data().when,
-            owner: record.data().owner
+            when: record.data().when
         } as Transaction
 
         return newTransaction

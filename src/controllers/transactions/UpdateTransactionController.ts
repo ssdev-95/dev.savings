@@ -13,6 +13,8 @@ class UpdateTransactionController {
             owner
         } = req.body as Transaction
 
+        const token = req.headers.authorization
+
         const id = req.params['slug']
 
         const updateTransactionService = new UpdateTransactionService()
@@ -24,7 +26,7 @@ class UpdateTransactionController {
             category: category,
             when: when,
             owner: owner
-        })
+        }, token)
 
         return res.json({ hasUpdated: hasUpdated })
     }

@@ -1,17 +1,22 @@
 import { decode } from "jsonwebtoken";
-// import { database } from "../../db/firebase"
+import { UserToken } from "../../@types";
+import { database } from "../../db/firebase"
 
 class DeleteUserService {
     async execute(token:string) {
-        const user = decode(token)
+        const user = decode(token) as UserToken
 
         if(!user) {
             throw new Error('Invalid token')
         }
 
-        // await database.collection('users').doc(user['id']).delete()
-        
-        return user
+        try {
+            await database.collection('users').doc(user.id).delete()
+            
+            return true
+        } catch(err) {
+            return false
+        }
     }
 }
 

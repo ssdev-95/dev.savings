@@ -27,12 +27,17 @@ async function handle404Redirect(req:Request, res:Response) {
 }
 
 // ############ Transaction Routes ############
-router.get('/users/:id/transactions', retrieveTransactionsController.handle)
-router.post('/users/:id/transactions', addTransactionController.handle)
-router.get('/users/:id/transactions/:slug', handle404Redirect)
-router.post('/users/:id/transactions/:slug', updateTransactionController.handle)
-router.delete('/users/:id/transactions/:slug', deleteTransactionController.handle)
+router.get('/users/transactions', retrieveTransactionsController.handle)
+router.post('/users/transactions', addTransactionController.handle)
+router.put('/users/transactions/:slug', updateTransactionController.handle)
+router.delete('/users/transactions/:slug', deleteTransactionController.handle)
 // router.get('/users/:id/transactions/:slug/update', handle404Redirect)
+
+// ############ Unhandled requests ############
+router.put('/users/transactions', handle404Redirect)
+router.delete('/users/transactions', handle404Redirect)
+router.get('/users/transactions/:slug', handle404Redirect)
+router.post('/users/transactions/:slug', handle404Redirect)
 
 // ############ User Routes ############
 router.get('/users', retrieveUserController.handle)

@@ -7,11 +7,9 @@ class DeleteUserController {
         const deleteUserService = new DeleteUserService()
 
         try {
-            const user = await deleteUserService.execute(token)
-            
-            console.log(user)
+            const hasDeleted = await deleteUserService.execute(token)
 
-            return res.json({ user: 'succeeded' })
+            return res.json({ hasDeleted: hasDeleted })
         } catch(err) {
             return res.status(500).json({ status: 'Unauthorized' })
         }
