@@ -1,14 +1,19 @@
 {
     "compilerOptions": {
       "target": "es5",  
-      "module": "commonjs", 
-      "strict": false,   
-      "strictPropertyInitialization": false, 
-      "esModuleInterop": true,   
-      "skipLibCheck": true, 
-      "forceConsistentCasingInFileNames": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "typeRoots": ["./src/@types"]
+      "module": "commonjs",
+      "lib": ["es6"], 
+      "strict": false,
+      "outDir": "build",
+      "rootDir": "src", 
+      "esModuleInterop": true, 
+      "allowJs": true,
+      "noImplicitAny": true,  
+      "typeRoots": ["./src/@types"],
+      // "strictPropertyInitialization": false, 
+      // "skipLibCheck": true, 
+      // "forceConsistentCasingInFileNames": true,
+      // "emitDecoratorMetadata": true,
+      // "experimentalDecorators": true
     }
 }
