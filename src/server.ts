@@ -5,7 +5,7 @@ import { router } from './routes'
 
 require('dotenv').config()
 
-const port = Number(process.env.NODE_APP_PORT) 
+const port = process.env.PORT || process.env.NODE_APP_PORT 
 
 const server = express()
 
