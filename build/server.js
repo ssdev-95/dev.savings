@@ -8,7 +8,7 @@ var express_1 = __importDefault(require("express"));
 require("express-async-errors");
 var routes_1 = require("./routes");
 require('dotenv').config();
-var port = Number(process.env.NODE_APP_PORT);
+var port = process.env.PORT || process.env.NODE_APP_PORT;
 var server = express_1.default();
 server.use(express_1.default.json());
 server.use(routes_1.router);
