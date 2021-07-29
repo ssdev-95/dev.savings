@@ -1,14 +1,19 @@
-import { createContext, useState } from 'react'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { createContext, useState, useEffect } from 'react'
+import { useCookies } from 'react-cookie'
+import axios from 'axios'
 
 import { firebase, auth } from '../services/firebase.config'
 
-import { IAuthContextData, IAuthProviderProps } from 'src/@types/auth'
+import { IAuthContextData, IProviderProps } from 'src/@types'
 
 const AuthContext = createContext({} as IAuthContextData)
 
-function AuthProvider({children}: IAuthProviderProps) {
-    const [token, setToken] = useState<string>('')
-    const [username, setUsername] = useState<string>('')
+const ApiURI = process.env.REACT_APP_API_URI
+
+function AuthProvider({children}: IProviderProps) {
+    const [cookie, setCookie] = useCookies(['token'])
+    const [token, setToken] = useState<string>(cookie['token'] || '')
 
     async function loginWithGoogle() {
         const authProvider = new firebase.auth.GoogleAuthProvider()
@@ -21,10 +26,18 @@ function AuthProvider({children}: IAuthProviderProps) {
                 throw new Error('Missing info from Google Account');
             }
 
-            const userToken = ''
+            const { data } = await axios.post(`${ApiURI}/users`, {
+                body: {
+                    id: uid,
+                    name: displayName
+                }
+            })
+
+            console.log(data.token)
+
+            const userToken = data.token as string
 
             setToken(userToken)
-            setUsername(displayName)
         }
     }
 
@@ -39,15 +52,20 @@ function AuthProvider({children}: IAuthProviderProps) {
                 throw new Error('Missing info from Github Account');
             }
 
-            const userToken = ''
+            const { data } = await axios.post(`${ApiURI}/users`, {
+                body: {
+                    id: uid,
+                    name: displayName
+                }
+            })
+
+            const userToken = data.token as string
 
             setToken(userToken)
-            setUsername(displayName)
         }
     }
     
     async function loginWithEmailAndPassword(email: string, passphrase: string) {
-        // const authProvider = new firebase.auth.GithubAuthProvider()
         const result = await auth.signInWithEmailAndPassword(email, passphrase)
 
         if(result.user) {
@@ -57,37 +75,53 @@ function AuthProvider({children}: IAuthProviderProps) {
                 throw new Error('Missing info from Github Account');
             }
 
-            const userToken = ''
+            const { data } = await axios.post(`${ApiURI}/users`, {
+                body: {
+                    id: uid,
+                    name: displayName
+                }
+            })
+
+            const userToken = data.token as string
 
             setToken(userToken)
-            setUsername(displayName)
         }
     }
 
     async function signUpWithEmailAndPassword(email: string, passphrase: string) {
-        // const authProvider = new firebase.auth.GithubAuthProvider()
-        const result = await auth.createUserWithEmailAndPassword(email, passphrase)
+        const { user } = await auth.createUserWithEmailAndPassword(email, passphrase)
 
-        if(result.user) {
-            const { displayName, uid } = result.user
+        if(user) {
+            const { displayName, uid } = user
 
-            if(!displayName) {
-                throw new Error('Missing info from Github Account');
-            }
+            const { data } = await axios.post(`${ApiURI}/users`, {
+                body: {
+                    id: uid,
+                    name: displayName || `User${Date.now()}`
+                }
+            })
 
-            const userToken = ''
+            const userToken = data.token as string
 
             setToken(userToken)
-            setUsername(displayName)
         }
     }
+
+    useEffect(()=>{
+        if(token.trim()!=='') {
+            setCookie('token',token, { path: '/', maxAge: (24*60*60) })
+        }
+    }, [token, setCookie])
 
     return (
         <AuthContext.Provider value={{
             token,
             setToken,
-            username, 
-            setUsername
+
+            loginWithGoogle,
+            loginWithGithub,
+            loginWithEmailAndPassword,
+            signUpWithEmailAndPassword
         }}>
             {children}
         </AuthContext.Provider>
