@@ -1,38 +1,40 @@
-import { ReactNode } from 'react'
+import { ReactNode, Dispatch, SetStateAction } from "react";
 
-export interface CardProps {
-    title: string;
-    value: number;
+interface IProviderProps {
+  children: ReactNode;
 }
 
-export interface ProviderProps {
-    children: ReactNode;
+interface ITransaction {
+  id?: string;
+  description: string;
+  amount: number;
+  date: string;
+  category: string;
 }
 
-export interface NavigationData {
-    component: number;
-    goForward: ()=>void;
-    goBackward: ()=>void;
+interface ITransactionsData {
+  transactions: ITransaction[];
+  incomes: number;
+  expenses: number;
+  total: number;
+  // formatAmount: (amount: number) => string;
+  // refresh: () => void;
+  // retrieveData: (data: ITransaction[]) => void;
+  // createTransaction: (transaction: ITransaction) => Promise<void>;
+  // updateTransaction: (id: string, transaction: ITransaction) => Promise<void>;
+  // deleteTransaction: (id: string) => void;
+  // formatDate: (date: string) => string;
 }
 
-export interface TransactionData {
-    id?: string;
-    description: string;
-    amount: number;
-    date: string;
-    op: string;
+// Auth types
+interface IAuthContextData {
+  token: string;
+  setToken: Dispatch<SetStateAction<string>>;
+
+  loginWithGoogle: ()=>Promise<void>;
+  loginWithGithub: ()=>Promise<void>;
+  loginWithEmailAndPassword: (email: string, passphrase: string)=>Promise<void>;
+  signUpWithEmailAndPassword: (email: string, passphrase: string)=>Promise<void>;
 }
 
-export interface TransactionsData {
-    transactions: TransactionData[],
-    incomes: number,
-    expenses: number,
-    total: number,
-    formatAmount: (amount: number) => string,
-    refresh: () => void,
-    retrieveData: (data: TransactionData[]) => void
-    createTransaction: (transaction: TransactionData)=>Promise<void>
-    updateTransaction: (id:string,transaction: TransactionData)=>Promise<void>
-    deleteTransaction: (id: string) => void
-    formatDate: (date:string) => string
-}
+export type { IProviderProps, ITransaction, ITransactionsData, IAuthContextData }
