@@ -1,9 +1,16 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect'
+
 import App from 'src/pages/Home';
 
-test('renders learn react link', () => {
+test('learn testing library', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const textElement = screen.getByText(/Studies shows that/);
+  expect(textElement).toBeInTheDocument();
 });
+
+test('button render', ()=>{
+  render(<App/>);
+  const buttonElement = screen.getByText(/Start saving today/);
+  expect(buttonElement).toBeInTheDocument();
+})
