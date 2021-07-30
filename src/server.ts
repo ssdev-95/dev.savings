@@ -10,7 +10,7 @@ const port = process.env.PORT || process.env.NODE_APP_PORT
 
 const server = express()
 
-server.use(cors())
+server.use(cors({ origin:true }))
 server.use(express.json())
 server.use(router)
 server.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
