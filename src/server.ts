@@ -7,7 +7,7 @@ import { router } from './routes'
 require('dotenv').config()
 
 const origins = [
-    'http://localhost:3000/',
+    'http://localhost:3000',
     'https://devsavings-alpha.firebaseapp.com/',
     'https://dev-savings-xsallus.vercel.app',
     'https://dev-savings-git-master-xsallus.vercel.app/'
