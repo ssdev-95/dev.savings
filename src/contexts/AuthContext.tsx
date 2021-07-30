@@ -9,7 +9,8 @@ import { IAuthContextData, IProviderProps } from 'src/@types'
 
 const AuthContext = createContext({} as IAuthContextData)
 
-const ApiURI = process.env.REACT_APP_API_URI
+// const ApiURI = process.env.REACT_APP_API_URI
+const ApiURI ='http://localhost:9000'
 
 function AuthProvider({children}: IProviderProps) {
     const [cookie, setCookie] = useCookies(['token'])
@@ -27,17 +28,21 @@ function AuthProvider({children}: IProviderProps) {
             }
 
             const { data } = await axios.post(`${ApiURI}/users`, {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
                 body: {
                     id: uid,
                     name: displayName
                 }
             })
 
-            console.log(data.token)
+            console.log(data)
 
-            const userToken = data.token as string
+            // const userToken = data.token as string
 
-            setToken(userToken)
+            // setToken(userToken)
         }
     }
 
@@ -53,15 +58,20 @@ function AuthProvider({children}: IProviderProps) {
             }
 
             const { data } = await axios.post(`${ApiURI}/users`, {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
                 body: {
                     id: uid,
                     name: displayName
                 }
             })
+            console.log(data)
 
-            const userToken = data.token as string
+            // const userToken = data.token as string
 
-            setToken(userToken)
+            // setToken(userToken)
         }
     }
     
@@ -76,15 +86,20 @@ function AuthProvider({children}: IProviderProps) {
             }
 
             const { data } = await axios.post(`${ApiURI}/users`, {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
                 body: {
                     id: uid,
                     name: displayName
                 }
             })
+            console.log(data)
 
-            const userToken = data.token as string
+            // const userToken = data.token as string
 
-            setToken(userToken)
+            // setToken(userToken)
         }
     }
 
@@ -95,15 +110,20 @@ function AuthProvider({children}: IProviderProps) {
             const { displayName, uid } = user
 
             const { data } = await axios.post(`${ApiURI}/users`, {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
                 body: {
                     id: uid,
                     name: displayName || `User${Date.now()}`
                 }
             })
+            console.log(data)
 
-            const userToken = data.token as string
+            // const userToken = data.token as string
 
-            setToken(userToken)
+            // setToken(userToken)
         }
     }
 
