@@ -6,11 +6,17 @@ import { router } from './routes'
 
 require('dotenv').config()
 
+const origins = [
+    'http://localhost:3000/',
+    'https://devsavings-alpha.firebaseapp.com/',
+    'https://dev-savings-xsallus.vercel.app',
+    'https://dev-savings-git-master-xsallus.vercel.app/'
+]
 const port = process.env.PORT || process.env.NODE_APP_PORT 
 
 const server = express()
 
-server.use(cors({ origin:true }))
+server.use(cors({ origin: origins }))
 server.use(express.json())
 server.use(router)
 server.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
