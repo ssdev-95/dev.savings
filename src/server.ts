@@ -7,10 +7,11 @@ import { router } from './routes'
 require('dotenv').config()
 
 const origins = [
-    'http://localhost:3000',
-    'https://devsavings-alpha.firebaseapp.com/',
+    'http://localhost:3000',,
     'https://dev-savings-xsallus.vercel.app',
-    'https://dev-savings-git-master-xsallus.vercel.app/'
+    'https://dev-savings-git-master-xsallus.vercel.app/',
+    '/\dev-savings-git-master-xsallus\.vercel.app$/',
+    '/\dev-savings\.vercel.app$/'
 ]
 const port = process.env.PORT || process.env.NODE_APP_PORT 
 
