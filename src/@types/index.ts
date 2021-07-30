@@ -19,7 +19,7 @@ interface ITransactionsData {
   total: number;
   // formatAmount: (amount: number) => string;
   // refresh: () => void;
-  // retrieveData: (data: ITransaction[]) => void;
+  // retrieveData: () => void;
   // createTransaction: (transaction: ITransaction) => Promise<void>;
   // updateTransaction: (id: string, transaction: ITransaction) => Promise<void>;
   // deleteTransaction: (id: string) => void;
@@ -37,4 +37,8 @@ interface IAuthContextData {
   signUpWithEmailAndPassword: (email: string, passphrase: string)=>Promise<void>;
 }
 
-export type { IProviderProps, ITransaction, ITransactionsData, IAuthContextData }
+interface ITableProps {
+  transactions: ITransaction[];
+}
+
+export type { IProviderProps, ITransaction, ITransactionsData, IAuthContextData, ITableProps }
