@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.spinner {
+    height: 10rem;
+    width: 10rem;
+
+    svg {
+        fill: var(--blue);
+
+        &:first-child {
+            height: 9rem;
+            width: auto;
+            animation: Rotator 5s infinite ease;
+        }
+
+        &:last-child {
+            height: 3rem;
+            width: auto;
+            animation: Rotator 5s infinite reverse ease;
+        }
+    }
+
+    @media(min-width: 860px) {
+        height: 14rem;
+        width: 14rem;
+    }
+}
+
+@keyframes Rotator {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
