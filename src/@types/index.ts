@@ -17,13 +17,13 @@ interface ITransactionsData {
   incomes: number;
   expenses: number;
   total: number;
-  // formatAmount: (amount: number) => string;
-  // refresh: () => void;
+  toUpdate: ITransaction|null;
+  isModalOpen: boolean;
+  toggleModal: (transaction: ITransaction|null)=>void;
   // retrieveData: () => void;
   // createTransaction: (transaction: ITransaction) => Promise<void>;
   // updateTransaction: (id: string, transaction: ITransaction) => Promise<void>;
   // deleteTransaction: (id: string) => void;
-  // formatDate: (date: string) => string;
 }
 
 // Auth types
@@ -41,4 +41,21 @@ interface ITableProps {
   transactions: ITransaction[];
 }
 
-export type { IProviderProps, ITransaction, ITransactionsData, IAuthContextData, ITableProps }
+interface ICardProps {
+  dataset: string[];
+  labels: string[];
+}
+
+interface IModalProps {
+  transaction?: ITransaction | null;
+}
+
+export type {
+  IProviderProps,
+  ITransaction,
+  ITransactionsData,
+  IAuthContextData,
+  ITableProps,
+  ICardProps,
+  IModalProps
+}
