@@ -8,7 +8,9 @@
     --red: #e92929;
     --blue: #363f5f;
     --black: #rgba(0,0,0,0.68);
-    --light-gray: #f0f0f0;
+    --light-gray: #f0f2f5;
+
+    --border: 10px;
 }
 
 * {
@@ -26,7 +28,7 @@ html, body {
   align-items: center;
   justify-content: flex-start;
 
-  background: va(--light-gray);
+  background: var(--light-gray);
 }
 
 html, body, button, a, span, p, h1, h2, h3, h4 {
@@ -34,7 +36,7 @@ html, body, button, a, span, p, h1, h2, h3, h4 {
 }
 
 button {
-  border-radius: 10px;
+  border-radius: var(--border);
   color:  var(--white);
   border: none;
 
