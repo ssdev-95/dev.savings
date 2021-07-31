@@ -9,7 +9,7 @@
 
     display: flex;
     flex-direction: column;
-    overflow: scroll hidden;
+    overflow: scroll;
 
     section {
         width: 1024px;
@@ -27,20 +27,49 @@
 
             table {
                 width: 100%;
-                color: var(--gray);
+                border-spacing: 0;
 
                 tr {
                     text-align: center;
                     height: 2rem;
+                    margin-bottom: .5rem;
 
                     td, th {
-                        border-collapse: collapse;
+                        padding: .75rem 0;
                     }
                 }
 
+                thead tr {
+                    color: var(--blue);
+                }
+
                 tbody tr {
+                    background: var(--white);
+                    font-weight: 600;
+                    color: var(--gray);
+
+                    td:first-child {
+                        text-transform: capitalize;
+                    }
+
+                    &:first-of-type {
+                        td:first-child {
+                            border-radius: var(--border) 0 0 0;
+                        }
+
+                        td:last-child {
+                            border-radius: 0 var(--border) 0 0;
+                        }
+                    }
+
                     &:last-of-type {
-                        border: 0 0 8px 8px;
+                        td:first-child {
+                            border-radius: 0 0 0 var(--border);
+                        }
+
+                        td:last-child {
+                            border-radius: 0 0 var(--border) 0;
+                        }
                     }
 
                     &:hover {
@@ -51,7 +80,7 @@
             }
         }
 
-        div {
+        div:first-child {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -60,9 +89,26 @@
             button {
                 width: 3rem;
                 height: 3rem;
+                font-size: 1.5rem;
 
                 background: var(--green);
                 color: var(--white);
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        div:last-child {
+            height: 14rem;
+            width: 14rem;
+            
+            @media(max-width: 860px) {
+                height: 10rem;
+                width: 10rem;
+
+                margin-top: 4.25rem;
             }
         }
 
