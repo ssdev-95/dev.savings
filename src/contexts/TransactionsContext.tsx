@@ -14,10 +14,17 @@ function TransactionsProvider({ children }: IProviderProps) {
     const [incomes, setIncomes] = useState(0)
     const [expenses, setExpenses] = useState(0)
     const [total, setTotal] = useState(0)
+    const [toUpdate, setToUpdate] = useState<ITransaction|null>(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     async function retrieveData() {
         const { data } = await axios.get(ApiURI)
         setTransactions(data[0].transactions)
+    }
+
+    function toggleModal(transaction:ITransaction|null=null) {
+        setIsModalOpen(!isModalOpen)
+        setToUpdate(transaction)
     }
 
     useEffect(()=>{
@@ -30,14 +37,16 @@ function TransactionsProvider({ children }: IProviderProps) {
         setIncomes(0)
 
         transactions.forEach(item=>{
-            if(item.category==='expense') setExpenses(expenses+1)
-
-            if(item.category==='income') setIncomes(incomes+1)
+            if(item.category==='expense') {
+                setExpenses(prev=>prev+item.amount)
+            } else {
+                setIncomes(prev=>prev+item.amount)
+            }
         })
     }, [transactions])
 
     useEffect(()=>{
-        setTotal(expenses+incomes)
+        setTotal(incomes-expenses)
     }, [expenses, incomes])
 
     return (
@@ -45,7 +54,11 @@ function TransactionsProvider({ children }: IProviderProps) {
             transactions,
             incomes,
             expenses,
-            total
+            total,
+
+            toUpdate,
+            isModalOpen,
+            toggleModal
         }}>
             {children}
         </TransactionsContext.Provider>

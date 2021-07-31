@@ -14,7 +14,7 @@ const ApiURI ='http://localhost:9000'
 
 function AuthProvider({children}: IProviderProps) {
     const [cookie, setCookie] = useCookies(['token'])
-    const [token, setToken] = useState<string>(cookie['token'] || '')
+    const [token, setToken] = useState<string>(cookie['token'] || 'sarff5f45g')
 
     async function loginWithGoogle() {
         const authProvider = new firebase.auth.GoogleAuthProvider()
