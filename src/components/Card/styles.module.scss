@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: .5rem;
+    padding: .5rem;
+    width: 18rem;
+    
+    border-radius: var(--border);
+
+    h2 {
+        color: var(--blue);
+    }
+
+    p {
+        color: var(--gray);
+    }
+
+    background: var(--white);
+
+    @media(max-width: 860px) {
+        width: 14rem;
+
+        p {
+            font-size: .95rem;
+        }
+
+        h2 {
+            font-size: 1.05rem;
+        }
+    }
+}
+
+.button {
+    background: rgba(0,0,0,0) !important;
+    color: var(--blue) !important;
+    font-weight: 600;
+    font-size: 2rem;
+}
