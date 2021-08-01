@@ -1,20 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext, useState, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 import axios from 'axios'
 
 import { firebase, auth } from '../services/firebase.config'
+import customHeaders from 'src/services/custom.headers.json'
 
 import { IAuthContextData, IProviderProps } from 'src/@types'
 
 const AuthContext = createContext({} as IAuthContextData)
 
-// const ApiURI = process.env.REACT_APP_API_URI
-const ApiURI ='http://localhost:9000'
+const URI = process.env.REACT_APP_API_URI
+// const URI ='http://localhost:9000'
 
 function AuthProvider({children}: IProviderProps) {
     const [cookie, setCookie] = useCookies(['token'])
-    const [token, setToken] = useState<string>(cookie['token'] || 'sarff5f45g')
+    const [token, setToken] = useState<string>('')
 
     async function loginWithGoogle() {
         const authProvider = new firebase.auth.GoogleAuthProvider()
@@ -27,22 +27,16 @@ function AuthProvider({children}: IProviderProps) {
                 throw new Error('Missing info from Google Account');
             }
 
-            const { data } = await axios.post(`${ApiURI}/users`, {
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: {
-                    id: uid,
-                    name: displayName
-                }
+            const { data } = await axios.post(`${URI}/users`, {
+                id: uid,
+                name: displayName
+            }, {
+                headers: customHeaders
             })
 
-            console.log(data)
+            const userToken = data.token as string
 
-            // const userToken = data.token as string
-
-            // setToken(userToken)
+            setCookie('token', userToken, { path: '/', maxAge: (24*60*60) })
         }
     }
 
@@ -57,21 +51,16 @@ function AuthProvider({children}: IProviderProps) {
                 throw new Error('Missing info from Github Account');
             }
 
-            const { data } = await axios.post(`${ApiURI}/users`, {
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: {
-                    id: uid,
-                    name: displayName
-                }
+            const { data } = await axios.post(`${URI}/users`, {
+                id: uid,
+                name: displayName
+            }, {
+                headers: customHeaders
             })
-            console.log(data)
 
-            // const userToken = data.token as string
+            const userToken = data.token as string
 
-            // setToken(userToken)
+            setCookie('token', userToken, { path: '/', maxAge: (24*60*60) })
         }
     }
     
@@ -81,25 +70,16 @@ function AuthProvider({children}: IProviderProps) {
         if(result.user) {
             const { displayName, uid } = result.user
 
-            if(!displayName) {
-                throw new Error('Missing info from Github Account');
-            }
-
-            const { data } = await axios.post(`${ApiURI}/users`, {
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: {
-                    id: uid,
-                    name: displayName
-                }
+            const { data } = await axios.post(`${URI}/users`, {
+                id: uid,
+                name: displayName || email
+            }, {
+                headers: customHeaders
             })
-            console.log(data)
 
-            // const userToken = data.token as string
+            const userToken = data.token as string
 
-            // setToken(userToken)
+            setCookie('token', userToken, { path: '/', maxAge: (24*60*60) })
         }
     }
 
@@ -109,34 +89,28 @@ function AuthProvider({children}: IProviderProps) {
         if(user) {
             const { displayName, uid } = user
 
-            const { data } = await axios.post(`${ApiURI}/users`, {
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: {
-                    id: uid,
-                    name: displayName || `User${Date.now()}`
-                }
+            const { data } = await axios.post(`${URI}/users`, {
+                id: uid,
+                name: displayName || email
+            }, {
+                headers: customHeaders
             })
-            console.log(data)
 
-            // const userToken = data.token as string
+            const userToken = data.token as string
 
-            // setToken(userToken)
+            setCookie('token', userToken, { path: '/', maxAge: (24*60*60) })
         }
     }
 
     useEffect(()=>{
-        if(token.trim()!=='') {
-            setCookie('token',token, { path: '/', maxAge: (24*60*60) })
+        if(cookie) {
+            setToken(cookie['token'])
         }
-    }, [token, setCookie])
+    }, [cookie])
 
     return (
         <AuthContext.Provider value={{
             token,
-            setToken,
 
             loginWithGoogle,
             loginWithGithub,
