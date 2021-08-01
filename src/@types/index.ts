@@ -29,8 +29,6 @@ interface ITransactionsData {
 // Auth types
 interface IAuthContextData {
   token: string;
-  setToken: Dispatch<SetStateAction<string>>;
-
   loginWithGoogle: ()=>Promise<void>;
   loginWithGithub: ()=>Promise<void>;
   loginWithEmailAndPassword: (email: string, passphrase: string)=>Promise<void>;
