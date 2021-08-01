@@ -47,7 +47,7 @@ function LoginPage() {
     }
 
     useEffect(()=>{
-        if(token.trim()==='') {
+        if(token && token.trim()!=='') {
             history.push('/home')
         }
     }, [token])

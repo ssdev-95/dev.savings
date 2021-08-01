@@ -3,7 +3,6 @@ import { useCookies } from 'react-cookie'
 import axios from 'axios'
 
 import { firebase, auth } from '../services/firebase.config'
-import customHeaders from 'src/services/custom.headers.json'
 
 import { IAuthContextData, IProviderProps } from 'src/@types'
 
@@ -11,6 +10,12 @@ const AuthContext = createContext({} as IAuthContextData)
 
 const URI = process.env.REACT_APP_API_URI
 // const URI ='http://localhost:9000'
+
+const customHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+}
 
 function AuthProvider({children}: IProviderProps) {
     const [cookie, setCookie] = useCookies(['token'])

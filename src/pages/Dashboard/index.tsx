@@ -56,7 +56,7 @@ function Dash() {
     return (
         <>
             {
-                token.trim()==='' ? (<Redirect to="/auth0" />) :
+                (!token||token.trim()==='') ? (<Redirect to="/auth0" />) :
                 (<main className={styles.dash}>
                     {isModalOpen && <Modal transaction={toUpdate} />}
                     <section>
