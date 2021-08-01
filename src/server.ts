@@ -1,23 +1,32 @@
 import 'reflect-metadata'
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
-import cors from 'cors'
+// import cors from 'cors'
 import { router } from './routes'
 
 require('dotenv').config()
 
-const origins = [
-    'http://localhost:3000',,
-    'https://dev-savings-xsallus.vercel.app',
-    'https://dev-savings-git-master-xsallus.vercel.app/',
-    '/\dev-savings-git-master-xsallus\.vercel.app$/',
-    '/\dev-savings\.vercel.app$/'
-]
+// const origins = [
+//     'http://localhost:3000',,
+//     'https://dev-savings-xsallus.vercel.app',
+//     'https://dev-savings-git-master-xsallus.vercel.app/',
+//     '/\dev-savings-git-master-xsallus\.vercel.app$/',
+//     '/\dev-savings\.vercel.app$/'
+// ]
 const port = process.env.PORT || process.env.NODE_APP_PORT 
 
 const server = express()
 
-server.use(cors({ origin: origins }))
+// server.use(cors({ origin: origins }))
+server.use((req:Request, res:Response, next:NextFunction)=>{
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+    res.setHeader('Access-Control-Allow-Methods', 'Content-Type')
+    res.setHeader('Access-Control-Allow-Methods', 'Authorization')
+
+    next()
+})
+
 server.use(express.json())
 server.use(router)
 server.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
