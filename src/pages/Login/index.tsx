@@ -1,4 +1,5 @@
-import { useState, ChangeEvent, FormEvent } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from 'src/hooks/useAuth'
 import ILogo from 'src/icons/logo.svg'
@@ -10,7 +11,8 @@ function LoginPage() {
         signUpWithEmailAndPassword,
         loginWithEmailAndPassword ,
         loginWithGoogle,
-        loginWithGithub
+        loginWithGithub,
+        token
     } = useAuth()
 
     const [credentials, setCredentials] = useState({
@@ -43,6 +45,12 @@ function LoginPage() {
 
         await signUpWithEmailAndPassword(email, password)
     }
+
+    useEffect(()=>{
+        if(token.trim()==='') {
+            history.push('/home')
+        }
+    }, [token])
 
     return (
         <main className={styles.container}>
