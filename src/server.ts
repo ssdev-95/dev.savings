@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
-// import cors from 'cors'
+import cors from 'cors'
 import { router } from './routes'
 
 require('dotenv').config()
@@ -17,27 +17,20 @@ const port = process.env.PORT || process.env.NODE_APP_PORT
 
 const server = express()
 
-// server.use(cors({ origin: origins }))
-/*server.use((req:Request, res:Response, next:NextFunction)=>{
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
-    res.setHeader('Access-Control-Allow-Headers', '*')
-
-    next()
-}) */
+server.use(cors())
 
 server.use(express.json())
 
-server.use((req:Request, res:Response, next:NextFunction)=>{
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
-    res.setHeader('Access-Control-Allow-Headers', '*')
-
-    next()
-})
-
-
 server.use(router)
+
+// server.use((req:Request, res:Response, next:NextFunction)=>{
+//     res.setHeader('Access-Control-Allow-Origin', '*')
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
+//     res.setHeader('Access-Control-Allow-Headers', '*')
+
+//     next()
+// })
+
 server.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
     if(err instanceof Error) {
         return res.status(400).json({ err: err.message })
