@@ -76,7 +76,7 @@
 >>```bash
 >> yarn dev
 >>```
->>> Enjoy!
+>>> Enjoy! :D
 
 ---
 
