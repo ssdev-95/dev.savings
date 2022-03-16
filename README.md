@@ -2,8 +2,7 @@
     <img src="https://raw.githubusercontent.com/xSallus/dev.savings/master/src/icons/logo.svg" />
 </h1>
 
->> # 💰 Dev.$avings
->>> An web aplication designed to help administrate your finances
+> An web aplication designed to help administrate your finances
 
 ---
 
@@ -53,7 +52,7 @@
 - [NextJS](https://nextjs.org/docs) <img src="https://raw.githubusercontent.com/xSallus/dev.savings/master/src/icons/next.svg" height="12px" />
 
 ---
-## How to run in your machine
+## How to run on your machine
 
 - First, clone ths repo using git bash:
 ```bash
